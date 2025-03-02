@@ -30,49 +30,24 @@ const elements = {
     decodePreviewContent: document.getElementById("decode-preview-content"),
 };
 
-elements.tabBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-        elements.tabBtns.forEach((b) => b.classList.remove("active"));
-        elements.tabContents.forEach((c) => c.classList.remove("active"));
-        btn.classList.add("active");
-        document
-            .getElementById(`${btn.dataset.tab}-tab`)
-            .classList.add("active");
-    });
-});
+const switchTab = (btn) => {
+    elements.tabBtns.forEach((b) => b.classList.remove("active"));
+    elements.tabContents.forEach((c) => c.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById(`${btn.dataset.tab}-tab`).classList.add("active");
+};
 
-elements.inputTypeRadios.forEach((radio) => {
-    radio.addEventListener("change", () => {
-        if (radio.value === "text") {
-            elements.textInputContainer.classList.remove("hidden");
-            elements.fileInputContainer.classList.add("hidden");
-        } else {
-            elements.textInputContainer.classList.add("hidden");
-            elements.fileInputContainer.classList.remove("hidden");
-        }
-    });
-});
+const toggleInputType = (type) => {
+    if (type === "text") {
+        elements.textInputContainer.classList.remove("hidden");
+        elements.fileInputContainer.classList.add("hidden");
+    } else {
+        elements.textInputContainer.classList.add("hidden");
+        elements.fileInputContainer.classList.remove("hidden");
+    }
+};
 
-elements.fileDropArea.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    elements.fileDropArea.classList.add("active");
-});
-
-elements.fileDropArea.addEventListener("dragleave", () => {
-    elements.fileDropArea.classList.remove("active");
-});
-
-elements.fileDropArea.addEventListener("drop", (e) => {
-    e.preventDefault();
-    elements.fileDropArea.classList.remove("active");
-    handleFile(e.dataTransfer.files[0]);
-});
-
-elements.fileInput.addEventListener("change", (e) => {
-    handleFile(e.target.files[0]);
-});
-
-function handleFile(file) {
+const handleFile = (file) => {
     if (!file) return;
 
     elements.fileName.textContent = file.name;
@@ -86,17 +61,17 @@ function handleFile(file) {
         updatePreview(file.type, reader.result);
     };
     reader.readAsDataURL(file);
-}
+};
 
-function formatFileSize(bytes) {
+const formatFileSize = (bytes) => {
     if (bytes === 0) return "0 Bytes";
     const k = 1024;
     const sizes = ["Bytes", "KB", "MB", "GB"];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
-}
+};
 
-function updatePreview(mimeType, dataUrl) {
+const updatePreview = (mimeType, dataUrl) => {
     elements.previewContainer.classList.remove("hidden");
     elements.previewContent.innerHTML = "";
 
@@ -115,9 +90,9 @@ function updatePreview(mimeType, dataUrl) {
         video.controls = true;
         elements.previewContent.appendChild(video);
     }
-}
+};
 
-elements.encodeBtn.addEventListener("click", () => {
+const encodeText = () => {
     const inputType = document.querySelector(
         'input[name="input-type"]:checked'
     ).value;
@@ -127,9 +102,9 @@ elements.encodeBtn.addEventListener("click", () => {
         elements.encodeOutput.value = btoa(text);
         elements.previewContainer.classList.add("hidden");
     }
-});
+};
 
-elements.decodeBtn.addEventListener("click", () => {
+const decodeBase64 = () => {
     const outputType = document.querySelector(
         'input[name="output-type"]:checked'
     ).value;
@@ -160,37 +135,77 @@ elements.decodeBtn.addEventListener("click", () => {
     } catch (error) {
         alert("Invalid Base64 string");
     }
-});
+};
 
-elements.copyEncodeBtn.addEventListener("click", async () => {
+const copyToClipboard = async (text, successMessage) => {
     try {
-        await navigator.clipboard.writeText(elements.encodeOutput.value);
-        alert("Encoded text copied to clipboard!");
+        await navigator.clipboard.writeText(text);
+        alert(successMessage);
     } catch (err) {
         alert("Failed to copy to clipboard");
     }
-});
+};
 
-elements.copyDecodeBtn.addEventListener("click", async () => {
-    try {
-        await navigator.clipboard.writeText(elements.decodeOutput.value);
-        alert("Decoded text copied to clipboard!");
-    } catch (err) {
-        alert("Failed to copy to clipboard");
-    }
-});
-
-elements.clearEncodeBtn.addEventListener("click", () => {
+const clearEncodeFields = () => {
     elements.textInput.value = "";
     elements.encodeOutput.value = "";
     elements.fileInput.value = "";
     elements.fileInfo.classList.add("hidden");
     elements.previewContainer.classList.add("hidden");
-});
+};
 
-elements.clearDecodeBtn.addEventListener("click", () => {
+const clearDecodeFields = () => {
     elements.decodeInput.value = "";
     elements.decodeOutput.value = "";
     elements.downloadBtn.classList.add("hidden");
     elements.decodePreviewContainer.classList.add("hidden");
+};
+
+elements.tabBtns.forEach((btn) => {
+    btn.addEventListener("click", () => switchTab(btn));
 });
+
+elements.inputTypeRadios.forEach((radio) => {
+    radio.addEventListener("change", () => toggleInputType(radio.value));
+});
+
+elements.fileDropArea.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    elements.fileDropArea.classList.add("active");
+});
+
+elements.fileDropArea.addEventListener("dragleave", () => {
+    elements.fileDropArea.classList.remove("active");
+});
+
+elements.fileDropArea.addEventListener("drop", (e) => {
+    e.preventDefault();
+    elements.fileDropArea.classList.remove("active");
+    handleFile(e.dataTransfer.files[0]);
+});
+
+elements.fileInput.addEventListener("change", (e) => {
+    handleFile(e.target.files[0]);
+});
+
+elements.encodeBtn.addEventListener("click", encodeText);
+
+elements.decodeBtn.addEventListener("click", decodeBase64);
+
+elements.copyEncodeBtn.addEventListener("click", () => {
+    copyToClipboard(
+        elements.encodeOutput.value,
+        "Encoded text copied to clipboard!"
+    );
+});
+
+elements.copyDecodeBtn.addEventListener("click", () => {
+    copyToClipboard(
+        elements.decodeOutput.value,
+        "Decoded text copied to clipboard!"
+    );
+});
+
+elements.clearEncodeBtn.addEventListener("click", clearEncodeFields);
+
+elements.clearDecodeBtn.addEventListener("click", clearDecodeFields);
