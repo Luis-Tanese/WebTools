@@ -1,0 +1,63 @@
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .color-section {
+        flex-direction: column;
+    }
+
+    .color-preview {
+        min-height: 150px;
+    }
+
+    .controls {
+        justify-content: center;
+    }
+
+    button {
+        min-width: 120px;
+    }
+
+    .back-button {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .rgb-inputs,
+    .hsl-inputs {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-top: 15px;
+    }
+
+    h4 {
+        font-size: 1rem;
+    }
+
+    .controls {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+}

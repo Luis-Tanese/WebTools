@@ -1,0 +1,160 @@
+@font-face {
+    font-family: "Torus";
+    src: url(../assets/Torus-Regular.otf);
+}
+
+* {
+    font-family: "Torus";
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #262424;
+    color: #eee5da;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+h4 {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #c5bdb4;
+    font-weight: normal;
+}
+
+.search-container {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #3a3636;
+    color: #eee5da;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#search-input:focus {
+    outline: none;
+}
+
+#search-input::placeholder {
+    color: #8a8585;
+}
+
+.tools-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+.tool-card {
+    background-color: #2e2c2c;
+    border-radius: 10px;
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tool-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #eee5da;
+}
+
+.tool-card p {
+    color: #c5bdb4;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    line-height: 1.5;
+}
+
+.tool-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #262424;
+    color: #eee5da;
+    text-decoration: none;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid #3a3636;
+}
+
+.tool-link:hover {
+    background-color: #eee5da;
+    color: #262424;
+}
+
+.tool-link.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.tool-link.disabled:hover {
+    background-color: #262424;
+    color: #eee5da;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    margin-top: 50px;
+    text-align: center;
+    width: 100%;
+    padding: 20px 0;
+}
+
+footer p {
+    color: #8a8585;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+footer a {
+    color: #8a8585;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+footer a:hover {
+    color: #eee5da;
+    transform: scale(1.05);
+}
+

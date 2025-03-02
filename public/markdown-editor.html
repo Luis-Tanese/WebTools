@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="../assets/Logo.png" type="image/icon type" />
+        <link rel="stylesheet" href="./markdown-editor.css" />
+        <link rel="stylesheet" href="./markdown-editor-media.css" />
+        <title>Markdown Editor</title>
+    </head>
+    <body>
+        <a href="./index.html" class="back-button"> Back </a>
+
+        <h1>Markdown Editor</h1>
+        <h4>Writes markdown with a live preview.</h4>
+
+        <div class="container">
+            <div class="editor-container">
+                <div class="editor-section">
+                    <h3>Markdown</h3>
+                    <textarea
+                        id="markdown-input"
+                        placeholder="Write your markdown here..."
+                    ></textarea>
+                </div>
+                <div class="editor-section">
+                    <h3>Preview</h3>
+                    <div id="preview-output" class="preview-pane"></div>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="copy-html-btn">Copy HTML</button>
+                <button id="copy-markdown-btn">Copy Markdown</button>
+                <button id="clear-btn">Clear</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>
+                Made with ❤ by Tanese.
+                <a href="" target="_blank">View this on GitHub!</a>
+            </p>
+        </footer>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="./markdown-editor.js"></script>
+</html>

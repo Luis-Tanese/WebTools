@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="../assets/Logo.png" type="image/icon type" />
+        <link rel="stylesheet" href="./contrast-checker.css" />
+        <link rel="stylesheet" href="./contrast-checker-media.css" />
+        <title>Contrast Checker</title>
+    </head>
+    <body>
+        <a href="./index.html" class="back-button"> Back </a>
+
+        <h1>Contrast Checker</h1>
+        <h4>
+            Check text and background color contrast. Very simple, I love it
+        </h4>
+
+        <div class="container">
+            <div class="contrast-preview">
+                <div class="color-panel left-panel" id="left-panel">
+                    <div class="sample-text" id="left-text">Sample Text</div>
+                    <div class="color-controls">
+                        <div class="color-input">
+                            <label for="left-text-color">Text Color:</label>
+                            <div class="color-input-group">
+                                <input
+                                    type="color"
+                                    id="left-text-color"
+                                    value="#FFFFFF"
+                                />
+                                <input
+                                    type="text"
+                                    id="left-text-hex"
+                                    value="#FFFFFF"
+                                />
+                            </div>
+                        </div>
+                        <div class="color-input">
+                            <label for="left-bg-color">Background Color:</label>
+                            <div class="color-input-group">
+                                <input
+                                    type="color"
+                                    id="left-bg-color"
+                                    value="#333333"
+                                />
+                                <input
+                                    type="text"
+                                    id="left-bg-hex"
+                                    value="#333333"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-panel right-panel" id="right-panel">
+                    <div class="sample-text" id="right-text">Sample Text</div>
+                    <div class="color-controls">
+                        <div class="color-input">
+                            <label for="right-text-color">Text Color:</label>
+                            <div class="color-input-group">
+                                <input
+                                    type="color"
+                                    id="right-text-color"
+                                    value="#333333"
+                                />
+                                <input
+                                    type="text"
+                                    id="right-text-hex"
+                                    value="#333333"
+                                />
+                            </div>
+                        </div>
+                        <div class="color-input">
+                            <label for="right-bg-color"
+                                >Background Color:</label
+                            >
+                            <div class="color-input-group">
+                                <input
+                                    type="color"
+                                    id="right-bg-color"
+                                    value="#FFFFFF"
+                                />
+                                <input
+                                    type="text"
+                                    id="right-bg-hex"
+                                    value="#FFFFFF"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <h3>Contrast Results</h3>
+                <div class="results-grid">
+                    <div class="result-item">
+                        <span class="result-label">Contrast Ratio:</span>
+                        <span id="contrast-ratio" class="result-value"
+                            >7.0:1</span
+                        >
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Normal Text:</span>
+                        <span id="normal-text-result" class="result-value"
+                            >Pass (AA & AAA)</span
+                        >
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Large Text:</span>
+                        <span id="large-text-result" class="result-value"
+                            >Pass (AA & AAA)</span
+                        >
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">UI Components:</span>
+                        <span id="ui-components-result" class="result-value"
+                            >Pass (AA & AAA)</span
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <h3>WCAG Guidelines</h3>
+                <div class="guidelines">
+                    <div class="guideline">
+                        <h4>Level AA</h4>
+                        <ul>
+                            <li>Normal Text: 4.5:1 minimum</li>
+                            <li>Large Text: 3:1 minimum</li>
+                            <li>UI Components: 3:1 minimum</li>
+                        </ul>
+                    </div>
+                    <div class="guideline">
+                        <h4>Level AAA</h4>
+                        <ul>
+                            <li>Normal Text: 7:1 minimum</li>
+                            <li>Large Text: 4.5:1 minimum</li>
+                            <li>UI Components: 3:1 minimum</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="swap-btn">Swap Colors</button>
+                <button id="reset-btn">Reset Colors</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>
+                Made with ❤ by Tanese.
+                <a
+                    href="https://github.com/yourusername/WebTools"
+                    target="_blank"
+                    >View this on GitHub!</a
+                >
+            </p>
+        </footer>
+        <script src="./contrast-checker.js"></script>
+    </body>
+</html>

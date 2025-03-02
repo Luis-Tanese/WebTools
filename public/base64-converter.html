@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="../assets/Logo.png" type="image/icon type" />
+        <link rel="stylesheet" href="./base64-converter.css" />
+        <link rel="stylesheet" href="./base64-converter-media.css" />
+        <title>Base64 Converter</title>
+    </head>
+    <body>
+        <a href="./index.html" class="back-button"> Back </a>
+
+        <h1>Base64 Converter</h1>
+        <h4>
+            Convert files and text to/from Base64 encoding. Very beautiful, very
+            powerful
+        </h4>
+
+        <div class="container">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="encode">Encode</button>
+                <button class="tab-btn" data-tab="decode">Decode</button>
+            </div>
+
+            <div class="tab-content active" id="encode-tab">
+                <div class="input-section">
+                    <div class="input-type-selector">
+                        <label>
+                            <input
+                                type="radio"
+                                name="input-type"
+                                value="text"
+                                checked
+                            />
+                            <span>Text</span>
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="input-type"
+                                value="file"
+                            />
+                            <span>File</span>
+                        </label>
+                    </div>
+
+                    <div class="input-container" id="text-input-container">
+                        <textarea
+                            id="text-input"
+                            placeholder="Enter text to encode to Base64..."
+                        ></textarea>
+                    </div>
+
+                    <div
+                        class="input-container hidden"
+                        id="file-input-container"
+                    >
+                        <div class="file-drop-area">
+                            <span class="file-msg">Drag & drop file or</span>
+                            <input
+                                type="file"
+                                id="file-input"
+                                class="file-input"
+                            />
+                            <button type="button" class="file-select-btn">
+                                Select a file
+                            </button>
+                        </div>
+                        <div class="file-info hidden" id="file-info">
+                            <span id="file-name">No file selected</span>
+                            <span id="file-size"></span>
+                            <span id="file-type"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="encode-btn">Encode</button>
+                    <button id="copy-encode-btn">Copy Result</button>
+                    <button id="clear-encode-btn">Clear</button>
+                </div>
+
+                <div class="output-section">
+                    <h3>Base64 Output</h3>
+                    <div class="output-container">
+                        <textarea
+                            id="encode-output"
+                            readonly
+                            placeholder="Base64 encoded result will appear here..."
+                        ></textarea>
+                    </div>
+                    <div
+                        class="preview-container hidden"
+                        id="preview-container"
+                    >
+                        <h3>Preview</h3>
+                        <div class="preview-content" id="preview-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="decode-tab">
+                <div class="input-section">
+                    <div class="input-type-selector">
+                        <label>
+                            <input
+                                type="radio"
+                                name="output-type"
+                                value="text"
+                                checked
+                            />
+                            <span>Text</span>
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="output-type"
+                                value="file"
+                            />
+                            <span>File</span>
+                        </label>
+                    </div>
+
+                    <div class="input-container">
+                        <textarea
+                            id="decode-input"
+                            placeholder="Enter Base64 string to decode..."
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button id="decode-btn">Decode</button>
+                    <button id="copy-decode-btn">Copy Result</button>
+                    <button id="download-btn" class="hidden">
+                        Download File
+                    </button>
+                    <button id="clear-decode-btn">Clear</button>
+                </div>
+
+                <div class="output-section">
+                    <h3>Decoded Output</h3>
+                    <div class="output-container" id="text-output-container">
+                        <textarea
+                            id="decode-output"
+                            readonly
+                            placeholder="Decoded result will appear here..."
+                        ></textarea>
+                    </div>
+                    <div
+                        class="preview-container hidden"
+                        id="decode-preview-container"
+                    >
+                        <h3>Preview</h3>
+                        <div
+                            class="preview-content"
+                            id="decode-preview-content"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>
+                Made with ❤ by Tanese.
+                <a
+                    href="https://github.com/yourusername/WebTools"
+                    target="_blank"
+                    >View this on GitHub!</a
+                >
+            </p>
+        </footer>
+        <script src="./base64-converter.js"></script>
+    </body>
+</html>
