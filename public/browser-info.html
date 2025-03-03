@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="../assets/Logo.png" type="image/icon type" />
+        <link rel="stylesheet" href="./browser-info-media.css" />
+        <link rel="stylesheet" href="./browser-info.css" />
+        <title>Browser Information</title>
+    </head>
+    <body>
+        <a href="./index.html" class="back-button"> Back </a>
+
+        <h1>Browser Information</h1>
+        <h4>Detailed information about your browser and IP address. NOTE: We do NOT log any of this information, this code is open sourced, you can check what happens by visiting the repo in the footer.</h4>
+
+        <div class="container">
+            <div class="stats-container">
+                <div class="stats-section">
+                    <h3>Browser Details</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Browser Name:</span>
+                            <span id="browser-name" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Browser Version:</span>
+                            <span id="browser-version" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">User Agent:</span>
+                            <span id="user-agent" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Operating System:</span>
+                            <span id="operating-system" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Screen Resolution:</span>
+                            <span id="screen-resolution" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Window Size:</span>
+                            <span id="window-size" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Color Depth:</span>
+                            <span id="color-depth" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Cookies Enabled:</span>
+                            <span id="cookies-enabled" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Language:</span>
+                            <span id="language" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Platform:</span>
+                            <span id="platform" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>IP Information</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">IP Address:</span>
+                            <span id="ip-address" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Country:</span>
+                            <span id="country" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Region:</span>
+                            <span id="region" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">City:</span>
+                            <span id="city" class="stat-value">Loading...</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Timezone:</span>
+                            <span id="timezone" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">ISP:</span>
+                            <span id="isp" class="stat-value">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>Feature Detection</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">WebGL Support:</span>
+                            <span id="webgl-support" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Canvas Support:</span>
+                            <span id="canvas-support" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Local Storage:</span>
+                            <span id="local-storage" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Session Storage:</span>
+                            <span id="session-storage" class="stat-value"
+                                >Loading...</span
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="refresh-btn">Refresh Information</button>
+                <button id="copy-btn">Copy All Information</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>
+                Made with ❤ by Tanese.
+                <a
+                    href="https://github.com/Luis-Tanese/WebTools"
+                    target="_blank"
+                    >View this on GitHub!</a
+                >
+            </p>
+        </footer>
+    </body>
+    <script src="./browser-info.js"></script>
+</html>

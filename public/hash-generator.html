@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="../assets/Logo.png" type="image/icon type" />
+        <link rel="stylesheet" href="./hash-generator-media.css" />
+        <link rel="stylesheet" href="./hash-generator.css" />
+        <title>Hash Generator</title>
+    </head>
+    <body>
+        <a href="./index.html" class="back-button"> Back </a>
+
+        <h1>Hash Generator</h1>
+        <h4>Generate various hash formats from your text</h4>
+
+        <div class="container">
+            <div class="input-section">
+                <textarea
+                    id="text-input"
+                    placeholder="Enter your text to generate hashes..."
+                ></textarea>
+            </div>
+
+            <div class="stats-container">
+                <div class="stats-section">
+                    <h3>Hash Results</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">MD5:</span>
+                            <div class="hash-result-container">
+                                <span
+                                    id="md5-result"
+                                    class="stat-value hash-result"
+                                    >Enter text above</span
+                                >
+                                <button class="copy-hash-btn" data-hash="md5">
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">SHA-1:</span>
+                            <div class="hash-result-container">
+                                <span
+                                    id="sha1-result"
+                                    class="stat-value hash-result"
+                                    >Enter text above</span
+                                >
+                                <button class="copy-hash-btn" data-hash="sha1">
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">SHA-256:</span>
+                            <div class="hash-result-container">
+                                <span
+                                    id="sha256-result"
+                                    class="stat-value hash-result"
+                                    >Enter text above</span
+                                >
+                                <button
+                                    class="copy-hash-btn"
+                                    data-hash="sha256"
+                                >
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">SHA-512:</span>
+                            <div class="hash-result-container">
+                                <span
+                                    id="sha512-result"
+                                    class="stat-value hash-result"
+                                    >Enter text above</span
+                                >
+                                <button
+                                    class="copy-hash-btn"
+                                    data-hash="sha512"
+                                >
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">SHA-3:</span>
+                            <div class="hash-result-container">
+                                <span
+                                    id="sha3-result"
+                                    class="stat-value hash-result"
+                                    >Enter text above</span
+                                >
+                                <button class="copy-hash-btn" data-hash="sha3">
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">RIPEMD-160:</span>
+                            <div class="hash-result-container">
+                                <span
+                                    id="ripemd160-result"
+                                    class="stat-value hash-result"
+                                    >Enter text above</span
+                                >
+                                <button
+                                    class="copy-hash-btn"
+                                    data-hash="ripemd160"
+                                >
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <h3>Options</h3>
+                    <div class="options-container">
+                        <div class="option-item">
+                            <label for="uppercase-checkbox">
+                                <input
+                                    type="checkbox"
+                                    id="uppercase-checkbox"
+                                />
+                                Display hashes in uppercase
+                            </label>
+                        </div>
+                        <div class="option-item">
+                            <label for="encoding-select">Input encoding:</label>
+                            <select id="encoding-select">
+                                <option value="utf8">UTF-8</option>
+                                <option value="ascii">ASCII</option>
+                                <option value="latin1">Latin1</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="copy-all-btn">Copy All Hashes</button>
+                <button id="clear-btn">Clear Text</button>
+            </div>
+        </div>
+
+        <footer>
+            <p>
+                Made with ❤ by Tanese.
+                <a
+                    href="https://github.com/Luis-Tanese/WebTools"
+                    target="_blank"
+                    >View this on GitHub!</a
+                >
+            </p>
+        </footer>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="./hash-generator.js"></script>
+</html>

@@ -7,7 +7,29 @@ require("dotenv").config();
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+    "https://tools.tanese.com",
+    "https://web-tools-mu.vercel.app",
+];
+
+app.use(
+    cors({
+        origin: function (origin, callback) {
+            if (!origin) return callback(null, true);
+
+            if (allowedOrigins.indexOf(origin) === -1) {
+                const msg =
+                    "My silly CORS policy doesn't allow access from this site (¬_¬ ).";
+                return callback(new Error(msg), false);
+            }
+
+            return callback(null, true);
+        },
+        methods: ["GET", "POST", "OPTIONS"],
+        credentials: true,
+    })
+);
+
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "public")));

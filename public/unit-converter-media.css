@@ -1,0 +1,44 @@
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .conversion-container {
+        flex-direction: column;
+    }
+
+    #swap-btn {
+        transform: rotate(90deg);
+    }
+
+    .back-button {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+
+    .common-conversions {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-top: 15px;
+    }
+
+    h4 {
+        font-size: 1rem;
+    }
+
+    .conversion-input {
+        width: 100%;
+    }
+}
