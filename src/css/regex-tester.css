@@ -1,0 +1,291 @@
+.rt-container {
+	max-width: 100%;
+}
+
+.rt-main {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.rt-regex-input-area {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	background-color: var(--color-surface);
+	padding: 15px;
+	border-radius: var(--border-radius);
+	border: 1px solid var(--color-border);
+	flex-wrap: wrap;
+}
+
+.rt-regex-input-area .regex-field {
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	background-color: var(--color-background);
+	border-radius: var(--border-radius);
+	border: 1px solid var(--color-border);
+	padding: 0 5px;
+}
+
+.rt-regex-input-area .regex-field span.regex-delimiter {
+	color: var(--color-text);
+	opacity: 0.7;
+	padding: 0 5px;
+	font-size: 1.2em;
+}
+
+.rt-regex-input-area input[type="text"]#regex-pattern {
+	flex-grow: 1;
+	padding: 10px;
+	font-family: "Consolas", "Monaco", "Courier New", monospace;
+	font-size: 1em;
+	border: none;
+	background-color: transparent;
+	color: var(--color-text);
+	outline: none;
+}
+
+.rt-regex-flags {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	margin-left: 10px;
+}
+
+.rt-regex-flags label {
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+	font-size: 0.9em;
+	padding: 5px 8px;
+	border-radius: var(--border-radius);
+	border: 1px solid transparent;
+	transition: background-color 0.2s, border-color 0.2s;
+}
+.rt-regex-flags input[type="checkbox"] {
+	margin-right: 5px;
+	accent-color: var(--color-accent);
+	width: 15px;
+	height: 15px;
+}
+.rt-regex-flags label:hover {
+	background-color: var(--color-border);
+}
+.rt-regex-flags input[type="checkbox"]:checked + span {
+	color: var(--color-accent);
+	font-weight: bold;
+}
+
+.rt-test-string-area,
+.rt-matches-area,
+.rt-cheatsheet-area,
+.rt-samples-area {
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	padding: 20px;
+}
+
+.rt-test-string-area h3,
+.rt-matches-area h3,
+.rt-cheatsheet-area h3,
+.rt-samples-area h3 {
+	margin-top: 0;
+	margin-bottom: 15px;
+	font-size: 1.2em;
+	color: var(--color-text);
+	border-bottom: 1px solid var(--color-border);
+	padding-bottom: 10px;
+}
+
+#regex-test-string {
+	width: 100%;
+	min-height: 150px;
+	padding: 10px;
+	font-family: var(--font-family);
+	font-size: 1em;
+	line-height: 1.6;
+	border: 1px solid var(--color-border);
+	background-color: var(--color-background);
+	color: var(--color-text);
+	border-radius: var(--border-radius);
+	resize: vertical;
+	outline: none;
+}
+#regex-test-string:focus {
+	border-color: var(--color-accent);
+	box-shadow: 0 0 0 2px var(--color-accent-hover);
+}
+
+.highlighted-text-area {
+	width: 100%;
+	min-height: 150px;
+	padding: 10px;
+	font-family: var(--font-family);
+	font-size: 1em;
+	line-height: 1.6;
+	border: 1px solid var(--color-border);
+	background-color: var(--color-background);
+	color: var(--color-text);
+	border-radius: var(--border-radius);
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	overflow-y: auto;
+}
+.highlighted-text-area .match {
+	background-color: rgba(160, 108, 213, 0.3);
+	border-bottom: 2px solid var(--color-accent);
+	border-radius: 2px;
+	padding: 0 1px;
+}
+.highlighted-text-area .group {
+	background-color: rgba(52, 152, 219, 0.3);
+	border-bottom: 1px dotted var(--color-info);
+}
+
+.rt-matches-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	max-height: 300px;
+	overflow-y: auto;
+}
+.rt-matches-list li {
+	background-color: var(--color-background);
+	padding: 8px 12px;
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	margin-bottom: 8px;
+	font-family: "Consolas", "Monaco", monospace;
+	font-size: 0.9em;
+}
+.rt-matches-list li .match-index {
+	font-weight: bold;
+	color: var(--color-accent);
+	margin-right: 10px;
+}
+.rt-matches-list li .group-index {
+	font-style: italic;
+	color: var(--color-info);
+	margin-left: 15px;
+	margin-right: 5px;
+}
+.rt-matches-list .no-matches {
+	font-style: italic;
+	opacity: 0.7;
+}
+
+.rt-cheatsheet-content {
+	font-size: 0.9em;
+	line-height: 1.6;
+	column-count: 3;
+	column-gap: 25px;
+	-webkit-column-count: 3;
+	-moz-column-count: 3;
+	-webkit-column-gap: 25px;
+	-moz-column-gap: 25px;
+}
+
+.rt-cheatsheet-content dl {
+	margin: 0;
+}
+
+.rt-cheatsheet-content dl dt {
+	font-family: "Consolas", "Monaco", monospace;
+	background-color: var(--color-background);
+	padding: 2px 6px;
+	border-radius: var(--border-radius);
+	display: inline-block;
+	margin-right: 8px;
+	color: var(--color-accent);
+	font-weight: bold;
+	margin-bottom: 2px;
+	-webkit-column-break-inside: avoid;
+	page-break-inside: avoid;
+	break-inside: avoid;
+}
+
+.rt-cheatsheet-content dl dd {
+	margin-left: 0;
+	margin-bottom: 12px;
+	padding-left: 0;
+	-webkit-column-break-inside: avoid;
+	page-break-inside: avoid;
+	break-inside: avoid;
+}
+
+.rt-samples-list button {
+	display: block;
+	width: 100%;
+	text-align: left;
+	padding: 8px 12px;
+	margin-bottom: 5px;
+	background-color: var(--color-background);
+	border: 1px solid var(--color-border);
+	color: var(--color-text);
+	border-radius: var(--border-radius);
+	cursor: pointer;
+	transition: background-color var(--transition-speed);
+}
+.rt-samples-list button:hover {
+	background-color: var(--color-border);
+}
+
+.rt-editor-preview-layout {
+	display: flex;
+	gap: 20px;
+}
+.rt-editor-column,
+.rt-preview-column {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+@media (max-width: 992px) {
+	.rt-editor-preview-layout {
+		flex-direction: column;
+	}
+	.rt-regex-input-area {
+		flex-direction: column;
+		align-items: stretch;
+	}
+	.rt-regex-input-area .regex-field {
+		margin-bottom: 10px;
+	}
+	.rt-regex-flags {
+		margin-left: 0;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+		gap: 5px 10px;
+	}
+	.rt-regex-flags label {
+		padding: 4px 6px;
+	}
+	.rt-cheatsheet-content {
+		column-count: 2;
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
+	}
+}
+
+@media (max-width: 600px) {
+	.rt-regex-input-area input[type="text"]#regex-pattern {
+		font-size: 0.9em;
+	}
+	.rt-regex-flags label {
+		font-size: 0.85em;
+	}
+	.highlighted-text-area,
+	#regex-test-string {
+		min-height: 120px;
+	}
+	.rt-cheatsheet-content {
+		column-count: 1;
+		-webkit-column-count: 1;
+		-moz-column-count: 1;
+	}
+}

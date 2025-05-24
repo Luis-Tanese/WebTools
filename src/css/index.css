@@ -1,0 +1,233 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	font-family: var(--font-family);
+	font-size: var(--font-size-base);
+	line-height: var(--line-height-base);
+	background-color: var(--color-background);
+	color: var(--color-text);
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.page-content-wrapper {
+	flex-grow: 1;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+header {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+header h1 {
+	font-size: 2.8em;
+	margin-bottom: 10px;
+	color: var(--color-text);
+}
+
+header .subtitle {
+	font-size: 1.1em;
+	color: var(--color-text);
+	opacity: 0.8;
+	margin-bottom: 30px;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.search-container {
+	margin-bottom: 40px;
+	display: flex;
+	justify-content: center;
+}
+
+#search-bar {
+	width: 100%;
+	max-width: 500px;
+	padding: 12px 20px;
+	font-size: 1em;
+	border: 1px solid var(--color-border);
+	background-color: var(--color-surface);
+	color: var(--color-text);
+	border-radius: var(--border-radius);
+	outline: none;
+	transition: border-color var(--transition-speed);
+}
+
+#search-bar:focus {
+	border-color: var(--color-accent);
+}
+
+.tools-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 25px;
+}
+
+.tool-card {
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	padding: 25px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.tool-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.tool-card h3 {
+	font-size: 1.5em;
+	margin-bottom: 10px;
+	color: var(--color-text);
+	display: flex;
+	align-items: center;
+}
+
+.tool-card h3 i {
+	margin-right: 10px;
+	color: var(--color-accent);
+	font-size: 0.9em;
+}
+
+.tool-card .description {
+	font-size: 0.95em;
+	color: var(--color-text);
+	opacity: 0.8;
+	margin-bottom: 20px;
+	flex-grow: 1;
+}
+
+.open-tool-btn {
+	display: inline-block;
+	width: 100%;
+	padding: 12px 20px;
+	background-color: var(--color-accent);
+	color: var(--color-accent-text);
+	text-align: center;
+	text-decoration: none;
+	border-radius: var(--border-radius);
+	font-weight: bold;
+	transition: background-color var(--transition-speed);
+	border: none;
+	cursor: pointer;
+}
+
+.open-tool-btn:hover {
+	background-color: var(--color-accent-hover);
+}
+
+.language-switcher {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	display: flex;
+	gap: 10px;
+	z-index: 1000;
+}
+
+.language-switcher button {
+	background-color: var(--color-surface);
+	color: var(--color-text);
+	border: 1px solid var(--color-border);
+	padding: 8px 12px;
+	border-radius: var(--border-radius);
+	cursor: pointer;
+	transition: background-color var(--transition-speed), color var(--transition-speed);
+	font-family: var(--font-family);
+}
+
+.language-switcher button:hover,
+.language-switcher button.active {
+	background-color: var(--color-accent);
+	color: var(--color-accent-text);
+	border-color: var(--color-accent);
+}
+
+.no-tools-message {
+	grid-column: 1 / -1;
+	text-align: center;
+	padding: 20px;
+	font-style: italic;
+	color: var(--color-text);
+	opacity: 0.7;
+}
+
+footer {
+	text-align: center;
+	padding: 25px 0;
+	color: var(--color-text);
+	opacity: 0.8;
+	font-size: 0.95em;
+	flex-shrink: 0;
+}
+
+footer p {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.3em;
+	flex-wrap: wrap;
+}
+
+.footer-heart-icon {
+	color: var(--color-error);
+	margin: 0 0.1em;
+}
+
+.footer-link {
+	color: var(--color-accent);
+	text-decoration: none;
+	font-weight: 500;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3em;
+}
+
+.footer-link:hover {
+	color: var(--color-accent-hover);
+	text-decoration: underline;
+}
+
+.github-icon {
+	font-size: 1.1em;
+}
+
+.tool-card.coming-soon-card {
+	opacity: 0.7;
+	border-style: dashed;
+}
+
+.tool-card .disabled-btn {
+	background-color: var(--color-border) !important; 
+	color: var(--color-text) !important;
+	opacity: 0.6 !important;
+	cursor: not-allowed !important;
+}
+
+.tool-card .disabled-btn i {
+	margin-right: 8px;
+}

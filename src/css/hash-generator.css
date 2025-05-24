@@ -1,0 +1,214 @@
+.hg-container {
+	max-width: 800px;
+}
+
+.hg-main {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+}
+
+.hg-controls {
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	padding: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.hg-input-type-toggle {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.hg-input-type-toggle span {
+	margin-right: 5px;
+	color: var(--color-text);
+	opacity: 0.8;
+	font-size: 0.9em;
+}
+
+.hg-algorithm-selector {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	min-width: 200px;
+}
+.hg-algorithm-selector label {
+	font-size: 0.9em;
+	font-weight: 500;
+}
+.hg-algorithm-selector select {
+	padding: 10px;
+	border-radius: var(--border-radius);
+	border: 1px solid var(--color-border);
+	background-color: var(--color-background);
+	color: var(--color-text);
+}
+
+.hg-input-area {
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	padding: 20px;
+}
+.hg-input-area label {
+	display: block;
+	margin-bottom: 10px;
+	font-weight: 500;
+}
+.hg-input-area textarea {
+	width: 100%;
+	padding: 12px;
+	font-family: var(--font-family);
+	font-size: 1em;
+	line-height: 1.6;
+	border: 1px solid var(--color-border);
+	background-color: var(--color-background);
+	color: var(--color-text);
+	border-radius: var(--border-radius);
+	resize: vertical;
+	min-height: 120px;
+}
+.hg-input-area textarea:focus {
+	outline: none;
+	border-color: var(--color-accent);
+}
+
+.hg-file-input-area {
+	text-align: center;
+}
+.hg-file-input-area .file-upload-label {
+	display: inline-block;
+	cursor: pointer;
+	margin-bottom: 10px;
+	padding: 10px 20px;
+	background-color: var(--color-accent);
+	color: var(--color-accent-text);
+	border: 1px solid var(--color-accent);
+	border-radius: var(--border-radius);
+	transition: background-color var(--transition-speed);
+}
+.hg-file-input-area .file-upload-label:hover {
+	background-color: var(--color-accent-hover);
+}
+#file-name-display-hash {
+	font-size: 0.9em;
+	color: var(--color-text);
+	opacity: 0.8;
+	margin-top: 8px;
+	word-break: break-all;
+	padding: 5px;
+	background-color: var(--color-background);
+	border-radius: var(--border-radius);
+	min-height: 2.5em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.hg-generate-btn {
+	padding: 12px 25px;
+	font-size: 1.05em;
+	align-self: center;
+}
+.hg-generate-btn i {
+	margin-right: 8px;
+}
+
+.hg-status-message {
+	margin-top: 5px;
+	padding: 10px;
+	border-radius: var(--border-radius);
+	text-align: center;
+	font-size: 0.9em;
+}
+.hg-status-message.success {
+	background-color: rgba(46, 204, 113, 0.15);
+	color: var(--color-success);
+	border: 1px solid var(--color-success);
+}
+.hg-status-message.error {
+	background-color: rgba(231, 76, 60, 0.15);
+	color: var(--color-error);
+	border: 1px solid var(--color-error);
+}
+
+.hg-output-section {
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	padding: 20px;
+}
+.hg-output-section h3 {
+	margin-top: 0;
+	margin-bottom: 15px;
+	font-size: 1.2em;
+	border-bottom: 1px solid var(--color-border);
+	padding-bottom: 10px;
+}
+.hg-hash-display {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.hg-hash-display input[type="text"] {
+	flex-grow: 1;
+	padding: 10px;
+	font-family: "Consolas", "Monaco", monospace;
+	font-size: 0.95em;
+	border: 1px solid var(--color-border);
+	background-color: var(--color-background);
+	color: var(--color-text);
+	border-radius: var(--border-radius);
+}
+.hg-copy-btn {
+	padding: 10px 15px;
+	height: auto; 
+}
+.hg-copy-btn i {
+	margin-right: 0; 
+}
+
+@media (max-width: 768px) {
+	.hg-controls {
+		flex-direction: column;
+		align-items: stretch;
+	}
+	.hg-input-type-toggle {
+		justify-content: center; 
+	}
+	.hg-algorithm-selector {
+		min-width: 100%;
+	}
+}
+
+@media (max-width: 480px) {
+	.hg-input-type-toggle {
+		flex-direction: column;
+		align-items: stretch;
+	}
+	.hg-input-type-toggle .toggle-btn-small {
+		width: 100%;
+		text-align: center;
+		margin-bottom: 5px;
+	}
+	.hg-input-type-toggle span {
+		text-align: center;
+		margin-bottom: 10px;
+	}
+	.hg-hash-display {
+		flex-direction: column;
+	}
+	.hg-hash-display input[type="text"] {
+		width: 100%;
+		margin-bottom: 10px;
+	}
+	.hg-copy-btn {
+		width: 100%;
+	}
+}

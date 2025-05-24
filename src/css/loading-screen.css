@@ -1,0 +1,46 @@
+.loading-screen {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--color-background);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+	opacity: 1;
+	transition: opacity 0.5s ease-out;
+}
+
+.loading-screen.fade-out {
+	opacity: 0;
+	pointer-events: none; /* Prevent interaction during fade out */
+}
+
+.loading-icon {
+	font-size: 4em; /* Adjust size as needed */
+	color: var(--color-accent);
+	margin-bottom: 20px;
+}
+
+/* Optional: If you want text below the icon */
+.loading-text {
+	font-family: var(--font-family);
+	color: var(--color-text);
+	font-size: 1.2em;
+	opacity: 0.8;
+}
+
+/* Font Awesome's fa-spin animation is usually sufficient.
+   If you need custom animation, you can define it here.
+   Example:
+   @keyframes custom-spin {
+     0% { transform: rotate(0deg); }
+     100% { transform: rotate(360deg); }
+   }
+   .loading-icon.custom-spin-animation {
+     animation: custom-spin 1.5s infinite linear;
+   }
+*/

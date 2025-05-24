@@ -1,0 +1,95 @@
+@media (max-width: 992px) {
+	.tools-grid {
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 20px;
+	}
+	.tool-card {
+		padding: 20px;
+	}
+}
+
+@media (max-width: 768px) {
+	body {
+		padding: 15px;
+	}
+	header {
+		margin-bottom: 30px;
+	}
+	header h1 {
+		font-size: 2.2em;
+	}
+	header .subtitle {
+		font-size: 1em;
+		margin-bottom: 25px;
+	}
+	.search-container {
+		margin-bottom: 30px;
+	}
+	#search-bar {
+		padding: 10px 15px;
+	}
+	.tools-grid {
+		grid-template-columns: 1fr;
+		gap: 15px;
+	}
+	.tool-card h3 {
+		font-size: 1.3em;
+	}
+	.tool-card .description {
+		font-size: 0.9em;
+	}
+	.open-tool-btn {
+		padding: 10px 15px;
+	}
+	.language-switcher {
+		top: 10px;
+		right: 10px;
+	}
+	.language-switcher button {
+		padding: 6px 10px;
+		font-size: 0.9em;
+	}
+	footer {
+		padding: 15px 0;
+		font-size: 0.9em;
+		margin-top: 40px;
+	}
+	footer p {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+}
+
+@media (max-width: 480px) {
+	header h1 {
+		font-size: 1.8em;
+	}
+	header .subtitle {
+		font-size: 0.85em;
+		max-width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.language-switcher {
+		gap: 3px;
+	}
+	.language-switcher button {
+		padding: 4px 8px;
+		font-size: 0.8em;
+	}
+
+	footer p {
+		gap: 5px;
+		font-size: 0.85em;
+	}
+}
+
+@media (max-width: 768px) {
+	.back-button {
+		top: 10px;
+		left: 10px;
+		padding: 6px 10px;
+		font-size: 0.9em;
+	}
+}

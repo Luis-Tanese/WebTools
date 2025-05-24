@@ -1,0 +1,208 @@
+.dc-container {
+	max-width: 100%;
+}
+
+.dc-main {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.dc-controls-bar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	align-items: flex-end;
+	padding: 15px;
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+}
+
+.dc-format-selector {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.dc-format-selector label {
+	font-size: 0.9em;
+	color: var(--color-text);
+	opacity: 0.8;
+	font-weight: 500;
+}
+
+.dc-format-selector select {
+	padding: 10px;
+	border-radius: var(--border-radius);
+	border: 1px solid var(--color-border);
+	background-color: var(--color-background);
+	color: var(--color-text);
+	font-family: var(--font-family);
+	min-width: 150px;
+}
+.dc-format-selector select:focus {
+	outline: none;
+	border-color: var(--color-accent);
+	box-shadow: 0 0 0 2px var(--color-accent-hover);
+}
+
+.dc-swap-button {
+	padding: 10px !important;
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	color: var(--color-accent);
+	min-width: auto;
+	align-self: flex-end;
+}
+.dc-swap-button:hover {
+	background-color: var(--color-border);
+}
+
+.dc-options {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding-top: 10px;
+	margin-left: auto;
+}
+.dc-options .option-item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.dc-options .option-item label {
+	font-size: 0.9em;
+	cursor: pointer;
+}
+.dc-options .option-item input[type="checkbox"] {
+	accent-color: var(--color-accent);
+	width: 16px;
+	height: 16px;
+}
+
+.dc-io-area {
+	display: flex;
+	gap: 20px;
+	min-height: 50vh;
+	max-height: 65vh;
+}
+
+.dc-pane {
+	flex: 1;
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+	position: relative;
+}
+
+.dc-pane-header {
+	padding: 10px 15px;
+	border-bottom: 1px solid var(--color-border);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.dc-pane-header h3 {
+	margin: 0;
+	font-size: 1.1em;
+	color: var(--color-text);
+}
+.dc-pane-actions button {
+	background: transparent;
+	border: none;
+	color: var(--color-text);
+	opacity: 0.7;
+	cursor: pointer;
+	padding: 5px;
+	font-size: 1em;
+	transition: opacity var(--transition-speed), color var(--transition-speed);
+}
+.dc-pane-actions button:hover:not(:disabled) {
+	opacity: 1;
+	color: var(--color-accent);
+}
+.dc-pane-actions button:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.dc-textarea {
+	flex-grow: 1;
+	width: 100%;
+	padding: 15px;
+	font-family: "Consolas", "Monaco", "Courier New", monospace;
+	font-size: 0.95em;
+	line-height: 1.6;
+	border: none;
+	background-color: transparent;
+	color: var(--color-text);
+	resize: none;
+	outline: none;
+	border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.dc-process-bar {
+	display: flex;
+	justify-content: center;
+	padding: 15px;
+	margin-top: 10px;
+}
+
+.dc-status-message {
+	margin-top: 15px;
+	padding: 10px;
+	border-radius: var(--border-radius);
+	text-align: center;
+	font-size: 0.9em;
+	display: none;
+}
+.dc-status-message.success {
+	background-color: rgba(46, 204, 113, 0.15);
+	color: var(--color-success);
+	border: 1px solid var(--color-success);
+	display: block;
+}
+.dc-status-message.error {
+	background-color: rgba(231, 76, 60, 0.15);
+	color: var(--color-error);
+	border: 1px solid var(--color-error);
+	display: block;
+}
+
+@media (max-width: 992px) {
+	.dc-controls-bar {
+		flex-direction: column;
+		align-items: stretch;
+	}
+	.dc-format-selector {
+		width: 100%;
+	}
+	.dc-format-selector select {
+		width: 100%;
+		min-width: 0;
+	}
+	.dc-swap-button {
+		align-self: center;
+		margin-top: 10px;
+	}
+	.dc-options {
+		margin-left: 0;
+		width: 100%;
+	}
+}
+
+@media (max-width: 768px) {
+	.dc-io-area {
+		flex-direction: column;
+		min-height: auto;
+		max-height: none;
+	}
+	.dc-pane {
+		min-height: 250px;
+	}
+}

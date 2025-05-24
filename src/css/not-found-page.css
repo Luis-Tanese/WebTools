@@ -1,0 +1,73 @@
+.nf-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	min-height: calc(100vh - 160px); 
+	padding: 20px;
+}
+
+.nf-icon {
+	font-size: 5em;
+	color: var(--color-accent);
+	margin-bottom: 20px;
+	animation: nf-float 3s ease-in-out infinite;
+}
+
+@keyframes nf-float {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+.nf-title {
+	font-size: 2.5em;
+	color: var(--color-text);
+	margin-bottom: 10px;
+}
+
+.nf-message {
+	font-size: 1.1em;
+	color: var(--color-text);
+	opacity: 0.8;
+	margin-bottom: 30px;
+	max-width: 500px;
+}
+
+.nf-home-button {
+	display: inline-block;
+	padding: 12px 25px;
+	background-color: var(--color-accent);
+	color: var(--color-accent-text);
+	text-decoration: none;
+	border-radius: var(--border-radius);
+	font-weight: bold;
+	transition: background-color var(--transition-speed);
+	border: none;
+	cursor: pointer;
+}
+
+.nf-home-button:hover {
+	background-color: var(--color-accent-hover);
+}
+
+@media (max-width: 600px) {
+	.nf-icon {
+		font-size: 4em;
+	}
+	.nf-title {
+		font-size: 2em;
+	}
+	.nf-message {
+		font-size: 1em;
+	}
+	.nf-home-button {
+		padding: 10px 20px;
+		font-size: 0.95em;
+	}
+}

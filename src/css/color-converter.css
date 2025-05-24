@@ -1,0 +1,191 @@
+.cc-container {
+	max-width: 1200px;
+}
+
+.cc-main {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+}
+
+.cc-input-section {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	align-items: flex-start;
+	padding: 20px;
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+}
+
+.cc-input-group {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	min-width: 200px;
+	flex-grow: 1;
+}
+.cc-input-group label {
+	font-size: 0.9em;
+	font-weight: 500;
+	color: var(--color-text);
+	opacity: 0.8;
+}
+.cc-input-group input[type="text"],
+.cc-input-group input[type="color"] {
+	padding: 10px;
+	border-radius: var(--border-radius);
+	border: 1px solid var(--color-border);
+	background-color: var(--color-background);
+	color: var(--color-text);
+	font-family: var(--font-family);
+	font-size: 1em;
+}
+.cc-input-group input[type="text"]:focus,
+.cc-input-group input[type="color"]:focus {
+	outline: none;
+	border-color: var(--color-accent);
+	box-shadow: 0 0 0 2px var(--color-accent-hover);
+}
+.cc-input-group input[type="color"] {
+	height: 45px;
+	padding: 5px;
+	min-width: 60px;
+	cursor: pointer;
+}
+
+.cc-color-preview-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 15px;
+	padding: 20px;
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+}
+.cc-color-preview-box {
+	width: 150px;
+	height: 150px;
+	border-radius: var(--border-radius);
+	border: 2px solid var(--color-border);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	background-image: linear-gradient(45deg, #ccc 25%, transparent 25%),
+		linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%),
+		linear-gradient(-45deg, transparent 75%, #ccc 75%);
+	background-size: 20px 20px;
+	background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+	position: relative;
+}
+.cc-color-preview-box .color-overlay {
+	width: 100%;
+	height: 100%;
+	border-radius: var(--border-radius);
+}
+
+.cc-output-section {
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	padding: 20px;
+}
+.cc-output-section h3 {
+	margin-top: 0;
+	margin-bottom: 15px;
+	font-size: 1.2em;
+	color: var(--color-text);
+	border-bottom: 1px solid var(--color-border);
+	padding-bottom: 10px;
+}
+.output-format-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 15px;
+}
+.output-format-item {
+	display: flex;
+	align-items: center;
+	background-color: var(--color-background);
+	padding: 8px 12px;
+	border-radius: var(--border-radius);
+	border: 1px solid var(--color-border);
+}
+.output-format-item .format-label {
+	font-weight: 500;
+	font-size: 0.9em;
+	color: var(--color-text);
+	opacity: 0.9;
+	margin-right: 10px;
+	min-width: 60px;
+}
+.output-format-item .format-value {
+	flex-grow: 1;
+	font-family: "Consolas", "Monaco", monospace;
+	font-size: 0.95em;
+	color: var(--color-text);
+	word-break: break-all;
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	min-width: 0;
+}
+.output-format-item .copy-btn-small {
+	background: transparent;
+	border: none;
+	color: var(--color-text);
+	opacity: 0.6;
+	cursor: pointer;
+	padding: 5px;
+	margin-left: 10px;
+	font-size: 0.9em;
+	transition: opacity var(--transition-speed), color var(--transition-speed);
+}
+.output-format-item .copy-btn-small:hover {
+	opacity: 1;
+	color: var(--color-accent);
+}
+
+.cc-status-message {
+	margin-top: 15px;
+	padding: 10px;
+	border-radius: var(--border-radius);
+	text-align: center;
+	font-size: 0.9em;
+	display: none;
+}
+.cc-status-message.error {
+	background-color: rgba(231, 76, 60, 0.15);
+	color: var(--color-error);
+	border: 1px solid var(--color-error);
+	display: block;
+}
+.cc-status-message.success {
+	background-color: rgba(46, 204, 113, 0.15);
+	color: var(--color-success);
+	border: 1px solid var(--color-success);
+	display: block;
+}
+
+@media (max-width: 768px) {
+	.cc-input-section {
+		flex-direction: column;
+		align-items: stretch;
+	}
+	.cc-input-group {
+		min-width: 0;
+	}
+	.cc-color-preview-box {
+		width: 120px;
+		height: 120px;
+	}
+}
+@media (max-width: 480px) {
+	.output-format-grid {
+		grid-template-columns: 1fr;
+	}
+	.cc-color-preview-box {
+		width: 100px;
+		height: 100px;
+	}
+}

@@ -1,0 +1,143 @@
+.jf-container {
+	max-width: 100%;
+}
+
+.jf-main {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.jf-io-area {
+	display: flex;
+	gap: 20px;
+	min-height: 60vh;
+	max-height: 75vh;
+}
+
+.jf-pane {
+	flex: 1;
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+	position: relative;
+}
+
+.jf-pane-header {
+	padding: 10px 15px;
+	border-bottom: 1px solid var(--color-border);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.jf-pane-header h3 {
+	margin: 0;
+	font-size: 1.1em;
+	color: var(--color-text);
+}
+
+.jf-pane-actions button {
+	background: transparent;
+	border: none;
+	color: var(--color-text);
+	opacity: 0.7;
+	cursor: pointer;
+	padding: 5px;
+	font-size: 1em;
+	transition: opacity var(--transition-speed), color var(--transition-speed);
+}
+.jf-pane-actions button:hover:not(:disabled) {
+	opacity: 1;
+	color: var(--color-accent);
+}
+.jf-pane-actions button:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+#json-input,
+#json-output {
+	flex-grow: 1;
+	width: 100%;
+	padding: 15px;
+	font-family: "Consolas", "Monaco", "Courier New", monospace;
+	font-size: 0.95em;
+	line-height: 1.6;
+	border: none;
+	background-color: transparent;
+	color: var(--color-text);
+	resize: none;
+	outline: none;
+	border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+#json-output {
+	white-space: pre;
+	overflow: auto;
+}
+
+.jf-controls {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	padding: 15px;
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	margin-top: 20px;
+	flex-wrap: wrap;
+}
+
+.jf-controls .tool-btn {
+	padding: 10px 20px;
+	font-size: 0.95em;
+}
+.jf-controls .tool-btn i {
+	margin-right: 8px;
+}
+
+.jf-status-message {
+	margin-top: 15px;
+	padding: 10px;
+	border-radius: var(--border-radius);
+	text-align: center;
+	font-size: 0.9em;
+	display: none;
+}
+.jf-status-message.success {
+	background-color: rgba(46, 204, 113, 0.15);
+	color: var(--color-success);
+	border: 1px solid var(--color-success);
+	display: block;
+}
+.jf-status-message.error {
+	background-color: rgba(231, 76, 60, 0.15);
+	color: var(--color-error);
+	border: 1px solid var(--color-error);
+	display: block;
+}
+
+@media (max-width: 768px) {
+	.jf-io-area {
+		flex-direction: column;
+		min-height: auto;
+		max-height: none;
+	}
+	.jf-pane {
+		min-height: 300px;
+	}
+	.jf-controls {
+		flex-direction: column;
+		gap: 10px;
+	}
+	.jf-controls .tool-btn {
+		width: 100%;
+		max-width: 300px;
+	}
+}
