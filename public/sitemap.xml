@@ -111,4 +111,10 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://tools.tanese.com/suggestions</loc>
+        <lastmod>2025-05-27</lastmod> 
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
 </urlset>

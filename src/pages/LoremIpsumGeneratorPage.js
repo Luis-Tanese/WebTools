@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useTranslation } from "../hooks/useTranslation";
 import { generateLoremIpsum } from "../utils/loremUtils";
-import "../css/lorem-ipsum-generator.css"; // Criaremos este arquivo
+import "../css/lorem-ipsum-generator.css";
 
 const LoremIpsumGeneratorPage = () => {
 	const { t } = useTranslation();
@@ -15,7 +15,7 @@ const LoremIpsumGeneratorPage = () => {
 		setStatusMessage("");
 		const numAmount = parseInt(amount, 10);
 		if (isNaN(numAmount) || numAmount <= 0) {
-			setGeneratedText("Please enter a valid positive amount."); // Não traduzido intencionalmente, pois é um erro de dev/usuário
+			setGeneratedText("Please enter a valid positive amount."); 
 			return;
 		}
 		const options = {
@@ -39,7 +39,6 @@ const LoremIpsumGeneratorPage = () => {
 		}
 	};
 
-	// Gerar texto inicial ao carregar
 	useState(() => {
 		handleGenerate();
 	}, []);

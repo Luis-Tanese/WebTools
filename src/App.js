@@ -21,6 +21,7 @@ import HashGeneratorPage from "./pages/HashGeneratorPage";
 import UrlShortenerPage from "./pages/UrlShortenerPage";
 import UniversalBaseConverterPage from "./pages/UniversalBaseConverterPage";
 import LoadingScreen from "./components/LoadingScreen";
+import SuggestionPage from "./pages/SuggestionPage";
 
 function App() {
 	const [isLoading, setIsLoading] = useState(true);
@@ -103,6 +104,17 @@ function App() {
 				</Route>
 				<Route element={<Layout pageTitleKey="ubcPageTitle" pageDescriptionKey="ubcPageDescription" />}>
 					<Route path="/tools/universal-base-converter" element={<UniversalBaseConverterPage />} />
+				</Route>
+				<Route
+					element={
+						<Layout
+							pageTitleKey="suggestionsPageTitle"
+							pageDescriptionKey="suggestionsPageDescription"
+							isToolPage={false}
+						/>
+					}
+				>
+					<Route path="/suggestions" element={<SuggestionPage />} />
 				</Route>
 			</Routes>
 		</Router>

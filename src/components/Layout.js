@@ -4,6 +4,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import Footer from "./Footer";
 import BackButton from "./BackButton";
 import { useTranslation } from "../hooks/useTranslation";
+import SuggestToolPopup from "./SuggestToolPopup";
 
 const Layout = ({ pageTitleKey, pageDescriptionKey, isToolPage = true }) => {
 	const { t, language } = useTranslation();
@@ -29,14 +30,14 @@ const Layout = ({ pageTitleKey, pageDescriptionKey, isToolPage = true }) => {
 
 	return (
 		<>
-			{isToolPage && <BackButton />}
-			<LanguageSwitcher />
-			<div className="page-content-wrapper">
-				{" "}
-				<Outlet />
-			</div>
-			<Footer />
-		</>
+            {isToolPage && <BackButton />}
+            <LanguageSwitcher />
+            <div className="page-content-wrapper">
+                <Outlet />
+            </div>
+            <SuggestToolPopup /> 
+            <Footer />
+        </>
 	);
 };
 

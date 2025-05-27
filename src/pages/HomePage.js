@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { useTranslation } from "../hooks/useTranslation";
 import "../css/index.css";
+import SuggestToolPopup from "../components/SuggestToolPopup";
 
 const HomePage = () => {
 	const { t, getTools, language } = useTranslation();
@@ -64,6 +65,7 @@ const HomePage = () => {
 	return (
 		<>
 			<LanguageSwitcher />
+			<SuggestToolPopup />
 			<div className="page-content-wrapper">
 				<div className="container">
 					<Header onSearch={handleSearchChange} />
