@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import ToolCard from "../components/ToolCard";
-import Footer from "../components/Footer";
-import LanguageSwitcher from "../components/LanguageSwitcher";
 import { useTranslation } from "../hooks/useTranslation";
 import "../css/index.css";
-import SuggestToolPopup from "../components/SuggestToolPopup";
+import { usePageTransition } from "../hooks/usePageTransition";
 
 const HomePage = () => {
 	const { t, getTools, language } = useTranslation();
+	const { triggerPageTransition } = usePageTransition();
 	const [searchTerm, setSearchTerm] = useState("");
 	const [allTools, setAllTools] = useState([]);
 	const [filteredTools, setFilteredTools] = useState([]);
@@ -62,27 +61,30 @@ const HomePage = () => {
 		setSearchTerm(event.target.value);
 	};
 
+	const handleToolCardClick = (path) => {
+		triggerPageTransition(path);
+	};
+
 	return (
 		<>
-			<LanguageSwitcher />
-			<SuggestToolPopup />
-			<div className="page-content-wrapper">
-				<div className="container">
-					<Header onSearch={handleSearchChange} />
-					<main>
-						<div id="tools-grid" className="tools-grid">
-							{filteredTools.length > 0 ? (
-								filteredTools.map((tool, index) => (
-									<ToolCard key={tool.path + index + (tool.title || tool.titleKey)} tool={tool} />
-								))
-							) : (
-								<p className="no-tools-message">{t("noToolsFound")}</p>
-							)}
-						</div>
-					</main>
-				</div>
+			<div className="container">
+				<Header onSearch={handleSearchChange} />
+				<main>
+					<div id="tools-grid" className="tools-grid">
+						{filteredTools.length > 0 ? (
+							filteredTools.map((tool, index) => (
+								<ToolCard
+									key={tool.path + index + (tool.title || tool.titleKey)}
+									tool={tool}
+									onToolCardClick={handleToolCardClick}
+								/>
+							))
+						) : (
+							<p className="no-tools-message">{t("noToolsFound")}</p>
+						)}
+					</div>
+				</main>
 			</div>
-			<Footer />
 		</>
 	);
 };

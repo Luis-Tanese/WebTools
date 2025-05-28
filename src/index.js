@@ -3,14 +3,12 @@ import ReactDOM from "react-dom/client";
 import "./css/root.css";
 import "./css/index.css";
 import "./css/index-media.css";
+import "./css/page-transition.css";
 import App from "./App";
-import { LanguageProvider } from "./contexts/LanguageContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
-		<LanguageProvider>
-			<App />
-		</LanguageProvider>
+		<App />
 	</React.StrictMode>
 );

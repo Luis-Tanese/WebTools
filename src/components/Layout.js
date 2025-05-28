@@ -1,12 +1,8 @@
 import React, { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import LanguageSwitcher from "./LanguageSwitcher";
-import Footer from "./Footer";
-import BackButton from "./BackButton";
 import { useTranslation } from "../hooks/useTranslation";
-import SuggestToolPopup from "./SuggestToolPopup";
 
-const Layout = ({ pageTitleKey, pageDescriptionKey, isToolPage = true }) => {
+const Layout = ({ pageTitleKey, pageDescriptionKey }) => {
 	const { t, language } = useTranslation();
 	const location = useLocation();
 
@@ -28,17 +24,7 @@ const Layout = ({ pageTitleKey, pageDescriptionKey, isToolPage = true }) => {
 		document.documentElement.lang = language.startsWith("pt") ? "pt-BR" : "en";
 	}, [t, pageTitleKey, pageDescriptionKey, location.pathname, language]);
 
-	return (
-		<>
-            {isToolPage && <BackButton />}
-            <LanguageSwitcher />
-            <div className="page-content-wrapper">
-                <Outlet />
-            </div>
-            <SuggestToolPopup /> 
-            <Footer />
-        </>
-	);
+	return <Outlet />;
 };
 
 export default Layout;

@@ -2,8 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "../hooks/useTranslation";
 import SuggestionForm from "../components/suggestions/SuggestionForm";
 import SuggestionList from "../components/suggestions/SuggestionList";
-import BackButton from "../components/BackButton";
-import "../css/suggestions.css";
 import { useToast } from "../hooks/useToast";
 
 const API_BASE_URL = "https://web-tools-server.vercel.app";
@@ -21,7 +19,9 @@ const SuggestionPage = () => {
 		try {
 			const response = await fetch(`${API_BASE_URL}/api/suggestions?sortBy=${sortOption}`);
 			if (!response.ok) {
-				const errorData = await response.json().catch(() => ({ message: t("errorAPI") }));
+				const errorData = await response.json().catch(() => ({
+					message: t("errorAPI"),
+				}));
 				throw new Error(errorData.message || t("errorAPI") + ` (${response.status})`);
 			}
 			const data = await response.json();
@@ -47,7 +47,9 @@ const SuggestionPage = () => {
 				body: JSON.stringify(suggestionData),
 			});
 			if (!response.ok) {
-				const errData = await response.json().catch(() => ({ message: t("errorAPI") }));
+				const errData = await response.json().catch(() => ({
+					message: t("errorAPI"),
+				}));
 				throw new Error(errData.message || t("errorAPI") + ` (${response.status})`);
 			}
 			showToast(t("suggestionSubmittedSuccess"), "success");
@@ -68,7 +70,9 @@ const SuggestionPage = () => {
 				body: JSON.stringify({ voteType, clientId }),
 			});
 			if (!response.ok) {
-				const errData = await response.json().catch(() => ({ message: t("errorAPI") }));
+				const errData = await response.json().catch(() => ({
+					message: t("errorAPI"),
+				}));
 				throw new Error(errData.message || t("errorAPI") + ` (${response.status})`);
 			}
 			const updatedSuggestion = await response.json();
@@ -88,7 +92,9 @@ const SuggestionPage = () => {
 				body: JSON.stringify(commentData),
 			});
 			if (!response.ok) {
-				const errData = await response.json().catch(() => ({ message: t("errorAPI") }));
+				const errData = await response.json().catch(() => ({
+					message: t("errorAPI"),
+				}));
 				throw new Error(errData.message || t("errorAPI") + ` (${response.status})`);
 			}
 			const updatedSuggestion = await response.json();
@@ -107,7 +113,6 @@ const SuggestionPage = () => {
 
 	return (
 		<div className="container suggestions-container">
-			<BackButton></BackButton>
 			<header className="tool-header">
 				<h1>{t("suggestionsPageTitle")}</h1>
 				<p className="subtitle">{t("suggestionsPageSubtitle")}</p>

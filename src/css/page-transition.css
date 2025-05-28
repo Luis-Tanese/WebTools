@@ -1,0 +1,77 @@
+.page-transition-wrapper {
+	min-height: calc(100vh - var(--footer-height-example, 80px));
+	width: 100%;
+	transition: opacity 0.3s ease-in-out;
+	will-change: opacity;
+}
+
+.page-transition-wrapper.fade-out {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.page-transition-wrapper.fade-in {
+	opacity: 1;
+}
+
+.transition-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--color-background);
+	z-index: 1500;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease-in-out;
+}
+
+.transition-overlay.active {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.back-button,
+.language-switcher,
+.suggestion-popup {
+	transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+	transform: translateX(0) translateY(0);
+	opacity: 1;
+}
+
+.slide-out-left {
+	transform: translateX(-150%);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.slide-out-right {
+	transform: translateX(150%);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.slide-out-bottom-right {
+	transform: translateY(150%);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.language-switcher {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+}
+
+.back-button {
+	position: fixed;
+	top: 20px;
+	left: 20px;
+}
+
+.suggestion-popup {
+	position: fixed;
+	bottom: 15px;
+	right: 15px;
+}

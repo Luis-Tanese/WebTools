@@ -211,12 +211,12 @@ const tools_pt_BR = [
 		],
 	},
 	{
-		titleKey: "comingSoonTitle",
-		descriptionKey: "comingSoonDescription",
-		path: "#",
-		icon: "fas fa-hourglass-half",
-		isComingSoon: true,
-		searchKeywords: ["em breve", "futuro", "novas", "ferramentas", "próximas"],
+		title: "Sugerir uma Ferramenta",
+		description: "Tem uma ideia para uma nova ferramenta? Compartilhe com a comunidade!",
+		path: "/suggestions",
+		icon: "fas fa-lightbulb",
+		buttonTextKey: "suggestToolPopupButton",
+		searchKeywords: ["sugerir", "sugestão", "ideia", "nova ferramenta", "feedback", "comunidade"],
 	},
 ];
 

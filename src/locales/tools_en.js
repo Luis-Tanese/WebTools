@@ -208,12 +208,12 @@ const tools_en = [
 		],
 	},
 	{
-		titleKey: "comingSoonTitle",
-		descriptionKey: "comingSoonDescription",
-		path: "#",
-		icon: "fas fa-hourglass-half",
-		isComingSoon: true,
-		searchKeywords: ["soon", "future", "new", "tools", "upcoming"],
+		title: "Suggest a Tool",
+		description: "Have an idea for a new tool? Share it with the community!",
+		path: "/suggestions",
+		icon: "fas fa-lightbulb",
+		buttonTextKey: "suggestToolPopupButton",
+		searchKeywords: ["suggest", "suggestion", "idea", "new tool", "feedback", "community"],
 	},
 ];
 

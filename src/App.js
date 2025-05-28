@@ -22,8 +22,11 @@ import UrlShortenerPage from "./pages/UrlShortenerPage";
 import UniversalBaseConverterPage from "./pages/UniversalBaseConverterPage";
 import LoadingScreen from "./components/LoadingScreen";
 import SuggestionPage from "./pages/SuggestionPage";
+import { LanguageProvider } from "./contexts/LanguageContext";
 import { ToastProvider } from "./contexts/ToastContext";
 import ToastContainer from "./components/ToastContainer";
+import { TransitionProvider } from "./contexts/TransitionContext";
+import RootLayout from "./components/RootLayout";
 
 function App() {
 	const [isLoading, setIsLoading] = useState(true);
@@ -54,74 +57,151 @@ function App() {
 	return (
 		<ToastProvider>
 			<Router>
-				<Routes>
-					<Route path="/" element={<HomePage />} />
-					<Route path="*" element={<NotFoundPage />} />
-					<Route element={<Layout pageTitleKey="qrPageTitle" pageDescriptionKey="qrPageDescription" />}>
-						<Route path="/tools/qr-generator" element={<QRCodeGeneratorPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="mdPageTitle" pageDescriptionKey="mdPageDescription" />}>
-						<Route path="/tools/markdown-editor" element={<MarkdownEditorPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="b64PageTitle" pageDescriptionKey="b64PageDescription" />}>
-						<Route path="/tools/base64-converter" element={<Base64ConverterPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="tcPageTitle" pageDescriptionKey="tcPageDescription" />}>
-						<Route path="/tools/text-counter" element={<TextCounterPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="jfPageTitle" pageDescriptionKey="jfPageDescription" />}>
-						<Route path="/tools/json-formatter" element={<JsonFormatterPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="icPageTitle" pageDescriptionKey="icPageDescription" />}>
-						<Route path="/tools/image-converter" element={<ImageConverterPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="rtPageTitle" pageDescriptionKey="rtPageDescription" />}>
-						<Route path="/tools/regex-tester" element={<RegexTesterPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="biPageTitle" pageDescriptionKey="biPageDescription" />}>
-						<Route path="/tools/browser-info" element={<BrowserInfoPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="dcPageTitle" pageDescriptionKey="dcPageDescription" />}>
-						<Route path="/tools/data-converter" element={<DataConverterPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="ucPageTitle" pageDescriptionKey="ucPageDescription" />}>
-						<Route path="/tools/unit-converter" element={<UnitConverterPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="ccPageTitle" pageDescriptionKey="ccPageDescription" />}>
-						<Route path="/tools/color-converter" element={<ColorConverterPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="scPageTitle" pageDescriptionKey="scPageDescription" />}>
-						<Route path="/tools/subnet-calculator" element={<SubnetCalculatorPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="lipPageTitle" pageDescriptionKey="lipPageDescription" />}>
-						<Route path="/tools/lorem-ipsum-generator" element={<LoremIpsumGeneratorPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="fgPageTitle" pageDescriptionKey="fgPageDescription" />}>
-						<Route path="/tools/favicon-generator" element={<FaviconGeneratorPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="hgPageTitle" pageDescriptionKey="hgPageDescription" />}>
-						<Route path="/tools/hash-generator" element={<HashGeneratorPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="usPageTitle" pageDescriptionKey="usPageDescription" />}>
-						<Route path="/tools/url-shortener" element={<UrlShortenerPage />} />
-					</Route>
-					<Route element={<Layout pageTitleKey="ubcPageTitle" pageDescriptionKey="ubcPageDescription" />}>
-						<Route path="/tools/universal-base-converter" element={<UniversalBaseConverterPage />} />
-					</Route>
-					<Route
-						element={
-							<Layout
-								pageTitleKey="suggestionsPageTitle"
-								pageDescriptionKey="suggestionsPageDescription"
-								isToolPage={false}
-							/>
-						}
-					>
-						<Route path="/suggestions" element={<SuggestionPage />} />
-					</Route>
-				</Routes>
+				<TransitionProvider>
+					<LanguageProvider>
+						<Routes>
+							<Route path="/" element={<RootLayout />}>
+								<Route index element={<HomePage />} />
+								<Route
+									element={
+										<Layout pageTitleKey="qrPageTitle" pageDescriptionKey="qrPageDescription" />
+									}
+								>
+									<Route path="tools/qr-generator" element={<QRCodeGeneratorPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="mdPageTitle" pageDescriptionKey="mdPageDescription" />
+									}
+								>
+									<Route path="tools/markdown-editor" element={<MarkdownEditorPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="b64PageTitle" pageDescriptionKey="b64PageDescription" />
+									}
+								>
+									<Route path="tools/base64-converter" element={<Base64ConverterPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="tcPageTitle" pageDescriptionKey="tcPageDescription" />
+									}
+								>
+									<Route path="tools/text-counter" element={<TextCounterPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="jfPageTitle" pageDescriptionKey="jfPageDescription" />
+									}
+								>
+									<Route path="tools/json-formatter" element={<JsonFormatterPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="icPageTitle" pageDescriptionKey="icPageDescription" />
+									}
+								>
+									<Route path="tools/image-converter" element={<ImageConverterPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="rtPageTitle" pageDescriptionKey="rtPageDescription" />
+									}
+								>
+									<Route path="tools/regex-tester" element={<RegexTesterPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="biPageTitle" pageDescriptionKey="biPageDescription" />
+									}
+								>
+									<Route path="tools/browser-info" element={<BrowserInfoPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="dcPageTitle" pageDescriptionKey="dcPageDescription" />
+									}
+								>
+									<Route path="tools/data-converter" element={<DataConverterPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="ucPageTitle" pageDescriptionKey="ucPageDescription" />
+									}
+								>
+									<Route path="tools/unit-converter" element={<UnitConverterPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="ccPageTitle" pageDescriptionKey="ccPageDescription" />
+									}
+								>
+									<Route path="tools/color-converter" element={<ColorConverterPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="scPageTitle" pageDescriptionKey="scPageDescription" />
+									}
+								>
+									<Route path="tools/subnet-calculator" element={<SubnetCalculatorPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="lipPageTitle" pageDescriptionKey="lipPageDescription" />
+									}
+								>
+									<Route path="tools/lorem-ipsum-generator" element={<LoremIpsumGeneratorPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="fgPageTitle" pageDescriptionKey="fgPageDescription" />
+									}
+								>
+									<Route path="tools/favicon-generator" element={<FaviconGeneratorPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="hgPageTitle" pageDescriptionKey="hgPageDescription" />
+									}
+								>
+									<Route path="tools/hash-generator" element={<HashGeneratorPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="usPageTitle" pageDescriptionKey="usPageDescription" />
+									}
+								>
+									<Route path="tools/url-shortener" element={<UrlShortenerPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="ubcPageTitle" pageDescriptionKey="ubcPageDescription" />
+									}
+								>
+									<Route
+										path="tools/universal-base-converter"
+										element={<UniversalBaseConverterPage />}
+									/>
+								</Route>
+								<Route
+									element={
+										<Layout
+											pageTitleKey="suggestionsPageTitle"
+											pageDescriptionKey="suggestionsPageDescription"
+										/>
+									}
+								>
+									<Route path="suggestions" element={<SuggestionPage />} />
+								</Route>
+								<Route path="*" element={<NotFoundPage />} />
+							</Route>
+						</Routes>
+					</LanguageProvider>
+				</TransitionProvider>
 			</Router>
 			<ToastContainer />
+			<div className={`transition-overlay ${isFadingOut ? "fade-out" : isLoading ? "active" : ""}`}></div>
 		</ToastProvider>
 	);
 }

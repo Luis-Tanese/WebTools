@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "../hooks/useTranslation";
+import { usePageTransition } from "../hooks/usePageTransition";
+import "../css/suggestions.css";
 
-const SuggestToolPopup = () => {
+const SuggestToolPopup = ({ className }) => {
 	const { t } = useTranslation();
+	const { triggerPageTransition } = usePageTransition();
 	const [isVisible, setIsVisible] = useState(false);
 
 	useState(() => {
@@ -17,9 +20,11 @@ const SuggestToolPopup = () => {
 		sessionStorage.setItem("suggestToolPopupShown", "true");
 	};
 
-	const handleSuggest = () => {
+	const handleSuggest = (event) => {
+		event.preventDefault();
 		setIsVisible(false);
 		sessionStorage.setItem("suggestToolPopupShown", "true");
+		triggerPageTransition("/suggestions");
 	};
 
 	if (!isVisible) {
@@ -27,7 +32,7 @@ const SuggestToolPopup = () => {
 	}
 
 	return (
-		<div className="suggestion-popup">
+		<div className={`suggestion-popup ${className}`}>
 			<button onClick={handleDismiss} className="dismiss-btn" title={t("suggestToolPopupDismiss")}>
 				<i className="fas fa-times"></i>
 			</button>

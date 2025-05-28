@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "../hooks/useTranslation";
 
-const ToolCard = ({ tool }) => {
+const ToolCard = ({ tool, onToolCardClick }) => {
 	const { t } = useTranslation();
 
 	if (tool.isComingSoon) {
@@ -20,6 +20,8 @@ const ToolCard = ({ tool }) => {
 		);
 	}
 
+	const buttonText = tool.buttonTextKey ? t(tool.buttonTextKey) : t("openToolButton");
+
 	return (
 		<div className="tool-card">
 			<h3>
@@ -27,8 +29,15 @@ const ToolCard = ({ tool }) => {
 				{tool.title}
 			</h3>
 			<p className="description">{tool.description}</p>
-			<Link to={tool.path} className="open-tool-btn">
-				{t("openToolButton")}
+			<Link
+				to={tool.path}
+				className="open-tool-btn"
+				onClick={(e) => {
+					e.preventDefault();
+					onToolCardClick(tool.path);
+				}}
+			>
+				{buttonText}
 			</Link>
 		</div>
 	);
