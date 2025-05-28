@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useTranslation } from "../hooks/useTranslation";
-import "../css/regex-tester.css"; 
+import { useToast } from "../hooks/useToast";
+import "../css/regex-tester.css";
 
 const regexSamples = [
 	{
@@ -43,13 +44,13 @@ const cheatsheetData = [
 
 const RegexTesterPage = () => {
 	const { t } = useTranslation();
-	const [pattern, setPattern] = useState("\\b\\w{5,}\\b"); 
+	const { showToast } = useToast();
+	const [pattern, setPattern] = useState("\\b\\w{5,}\\b");
 	const [flags, setFlags] = useState({ g: true, i: false, m: false, s: false, u: false, y: false });
 	const [testString, setTestString] = useState(
 		"A quick brown fox jumps over the lazy dog.\nRegular expressions are powerful."
 	);
 	const [matches, setMatches] = useState([]);
-	const [error, setError] = useState(null);
 
 	const selectedFlags = useMemo(() => {
 		return Object.entries(flags)
@@ -61,12 +62,10 @@ const RegexTesterPage = () => {
 	const processRegex = useCallback(() => {
 		if (!pattern) {
 			setMatches([]);
-			setError(null);
 			return;
 		}
 		try {
 			const regex = new RegExp(pattern, selectedFlags);
-			setError(null);
 			let currentMatch;
 			const foundMatches = [];
 
@@ -93,10 +92,10 @@ const RegexTesterPage = () => {
 			}
 			setMatches(foundMatches);
 		} catch (e) {
-			setError(`${t("rtErrorInvalidRegex")}: ${e.message}`);
+			showToast(`${t("rtErrorInvalidRegex")}: ${e.message}`, "error");
 			setMatches([]);
 		}
-	}, [pattern, selectedFlags, testString, t]);
+	}, [pattern, selectedFlags, testString, t, showToast]);
 
 	useEffect(() => {
 		const handler = setTimeout(() => {
@@ -176,12 +175,6 @@ const RegexTesterPage = () => {
 						))}
 					</div>
 				</div>
-
-				{error && (
-					<p className="jf-status-message error" style={{ textAlign: "left" }}>
-						{error}
-					</p>
-				)}
 
 				<div className="rt-editor-preview-layout">
 					<div className="rt-editor-column">

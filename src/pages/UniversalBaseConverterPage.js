@@ -1,26 +1,20 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useTranslation } from "../hooks/useTranslation";
+import { useToast } from "../hooks/useToast";
 import { CONVERSION_TYPES, convertValue, handleTextSpecificConversions } from "../utils/baseConverterUtils";
 import "../css/universal-base-converter.css";
 
 const UniversalBaseConverterPage = () => {
 	const { t } = useTranslation();
+	const { showToast } = useToast();
 	const [inputValue, setInputValue] = useState("");
 	const [outputValue, setOutputValue] = useState("");
 	const [fromType, setFromType] = useState("TEXT");
 	const [toType, setToType] = useState("BINARY");
-	const [error, setError] = useState("");
-	const [successMessage, setSuccessMessage] = useState("");
 
 	const typeOptions = Object.values(CONVERSION_TYPES);
 
-	const clearMessages = () => {
-		setError("");
-		setSuccessMessage("");
-	};
-
 	const performConversion = useCallback(() => {
-		clearMessages();
 		if (!inputValue.trim()) {
 			setOutputValue("");
 			return;
@@ -35,10 +29,10 @@ const UniversalBaseConverterPage = () => {
 			setOutputValue(result);
 		} catch (err) {
 			console.error("Conversion error:", err);
-			setError(err.message || t("ubcErrorConversionFailed"));
+			showToast(err.message || t("ubcErrorConversionFailed"), "error");
 			setOutputValue("");
 		}
-	}, [inputValue, fromType, toType, t]);
+	}, [inputValue, fromType, toType, t, showToast]);
 
 	useEffect(() => {
 		performConversion();
@@ -58,10 +52,9 @@ const UniversalBaseConverterPage = () => {
 			navigator.clipboard
 				.writeText(outputValue)
 				.then(() => {
-					setSuccessMessage(t("ubcCopiedSuccess"));
-					setTimeout(clearMessages, 2000);
+					showToast(t("ubcCopiedSuccess"), "success");
 				})
-				.catch(() => setError(t("ubcCopiedError")));
+				.catch(() => showToast(t("ubcCopiedError"), "error"));
 		}
 	};
 
@@ -104,9 +97,6 @@ const UniversalBaseConverterPage = () => {
 						</select>
 					</div>
 				</div>
-
-				{error && <p className="ubc-status-message error">{error}</p>}
-				{successMessage && <p className="ubc-status-message success">{successMessage}</p>}
 
 				<div className="ubc-io-area">
 					<div className="ubc-pane">

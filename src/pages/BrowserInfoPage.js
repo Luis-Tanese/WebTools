@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "../hooks/useTranslation";
+import { useToast } from "../hooks/useToast";
 import "../css/browser-info.css";
 
 const BrowserInfoPage = () => {
 	const { t } = useTranslation();
+	const { showToast } = useToast();
 	const [browserInfo, setBrowserInfo] = useState({});
 	const [ipInfo, setIpInfo] = useState({ ip: t("biFetchingIP") || "Fetching..." });
 	const [featureSupport, setFeatureSupport] = useState({});
@@ -71,6 +73,7 @@ const BrowserInfoPage = () => {
 			.catch((error) => {
 				console.error("Error fetching IP:", error);
 				setIpInfo({ ip: t("biErrorFetchingIP") || "Could not fetch IP" });
+				showToast(t("biErrorFetchingIP"), "error");
 			});
 
 		setFeatureSupport({
@@ -106,7 +109,7 @@ const BrowserInfoPage = () => {
 				return false;
 			})(),
 		});
-	}, [t]);
+	}, [t, showToast]);
 
 	const renderSupport = (isSupported) => {
 		if (isSupported === true) return <span className="info-value supported">{t("biSupported")}</span>;

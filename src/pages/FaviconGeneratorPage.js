@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef } from "react";
 import { useTranslation } from "../hooks/useTranslation";
+import { useToast } from "../hooks/useToast";
 import { FAVICON_SIZES, resizeImage, generateManifestJson, generateHtmlCode, createZip } from "../utils/faviconUtils";
 import "../css/favicon-generator.css";
 
@@ -7,6 +8,7 @@ const acceptedInputTypes = ["image/png", "image/jpeg", "image/svg+xml", "image/w
 
 const FaviconGeneratorPage = () => {
 	const { t } = useTranslation();
+	const { showToast } = useToast();
 	const [originalImageFile, setOriginalImageFile] = useState(null);
 	const [originalImageUrl, setOriginalImageUrl] = useState("");
 	const [generatedFavicons, setGeneratedFavicons] = useState([]);
@@ -15,18 +17,9 @@ const FaviconGeneratorPage = () => {
 	const [appName, setAppName] = useState("My App");
 	const [themeColor, setThemeColor] = useState("#ffffff");
 	const [isGenerating, setIsGenerating] = useState(false);
-	const [error, setError] = useState("");
-	const [successMessage, setSuccessMessage] = useState("");
-
 	const fileInputRef = useRef(null);
 
-	const clearMessages = () => {
-		setError("");
-		setSuccessMessage("");
-	};
-
 	const handleImageUpload = (event) => {
-		clearMessages();
 		const file = event.target.files[0];
 		if (file && acceptedInputTypes.includes(file.type)) {
 			setOriginalImageFile(file);
@@ -35,11 +28,11 @@ const FaviconGeneratorPage = () => {
 			setHtmlCode("");
 			setManifestJson("");
 		} else if (file) {
-			setError("Invalid file type. Please upload PNG, JPG, SVG, or WEBP.");
+			showToast("Invalid file type. Please upload PNG, JPG, SVG, or WEBP.", "error");
 			setOriginalImageFile(null);
 			setOriginalImageUrl("");
 		}
-		event.target.value = null; // Reset file input
+		event.target.value = null;
 	};
 
 	const triggerFileInput = () => {
@@ -50,10 +43,9 @@ const FaviconGeneratorPage = () => {
 
 	const handleGenerate = useCallback(async () => {
 		if (!originalImageFile) {
-			setError(t("fgErrorNoImage"));
+			showToast(t("fgErrorNoImage"), "error");
 			return;
 		}
-		clearMessages();
 		setIsGenerating(true);
 		setGeneratedFavicons([]);
 
@@ -90,18 +82,17 @@ const FaviconGeneratorPage = () => {
 			setHtmlCode(htmlContent);
 		} catch (err) {
 			console.error("Favicon generation error:", err);
-			setError(t("fgErrorGeneration") + (err.message ? `: ${err.message}` : ""));
+			showToast(t("fgErrorGeneration") + (err.message ? `: ${err.message}` : ""), "error");
 		} finally {
 			setIsGenerating(false);
 		}
-	}, [originalImageFile, appName, themeColor, t]);
+	}, [originalImageFile, appName, themeColor, t, showToast]);
 
 	const handleDownloadZip = async () => {
 		if (generatedFavicons.length === 0 && !manifestJson) {
-			setError("No files generated to download.");
+			showToast("No files generated to download.", "error");
 			return;
 		}
-		clearMessages();
 		const filesToZip = [...generatedFavicons.filter((f) => f.blob)];
 		if (manifestJson) {
 			filesToZip.push({ name: "site.webmanifest", content: manifestJson });
@@ -116,10 +107,10 @@ const FaviconGeneratorPage = () => {
 			link.click();
 			document.body.removeChild(link);
 			URL.revokeObjectURL(link.href);
-			setSuccessMessage(t("fgSuccessZipDownloaded"));
+			showToast(t("fgSuccessZipDownloaded"), "success");
 		} catch (err) {
 			console.error("ZIP creation error:", err);
-			setError("Error creating ZIP file.");
+			showToast("Error creating ZIP file.", "error");
 		}
 	};
 
@@ -127,9 +118,8 @@ const FaviconGeneratorPage = () => {
 		if (htmlCode) {
 			navigator.clipboard
 				.writeText(htmlCode)
-				.then(() => setSuccessMessage(t("fgSuccessHtmlCopied")))
-				.catch(() => setError("Failed to copy HTML code."));
-			setTimeout(clearMessages, 3000);
+				.then(() => showToast(t("fgSuccessHtmlCopied"), "success"))
+				.catch(() => showToast("Failed to copy HTML code.", "error"));
 		}
 	};
 
@@ -168,9 +158,6 @@ const FaviconGeneratorPage = () => {
 						<img src={originalImageUrl} alt="Source" className="fg-source-preview" />
 					</div>
 				)}
-
-				{error && <p className="fg-status-message error">{error}</p>}
-				{successMessage && <p className="fg-status-message success">{successMessage}</p>}
 
 				<div className="fg-options-section">
 					<h4>{t("fgOptionsHeader")}</h4>

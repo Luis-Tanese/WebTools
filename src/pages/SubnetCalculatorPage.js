@@ -1,29 +1,29 @@
 import React, { useState, useCallback } from "react";
 import { useTranslation } from "../hooks/useTranslation";
+import { useToast } from "../hooks/useToast";
 import { calculateSubnetDetails, isValidIp, isValidMaskOrCidr } from "../utils/ipUtils";
 import "../css/subnet-calculator.css";
 
 const SubnetCalculatorPage = () => {
 	const { t } = useTranslation();
+	const { showToast } = useToast();
 	const [ipAddress, setIpAddress] = useState("192.168.1.10");
 	const [subnetMask, setSubnetMask] = useState("/24");
 	const [results, setResults] = useState(null);
-	const [error, setError] = useState("");
 
 	const handleCalculate = useCallback(() => {
-		setError("");
 		setResults(null);
 
 		if (!ipAddress.trim() || !subnetMask.trim()) {
-			setError(t("scErrorInvalidInput"));
+			showToast(t("scErrorInvalidInput"), "error");
 			return;
 		}
 		if (!isValidIp(ipAddress)) {
-			setError(t("scErrorInvalidIP"));
+			showToast(t("scErrorInvalidIP"), "error");
 			return;
 		}
 		if (!isValidMaskOrCidr(subnetMask)) {
-			setError(t("scErrorInvalidMask"));
+			showToast(t("scErrorInvalidMask"), "error");
 			return;
 		}
 
@@ -31,10 +31,10 @@ const SubnetCalculatorPage = () => {
 			const details = calculateSubnetDetails(ipAddress, subnetMask);
 			setResults(details);
 		} catch (e) {
-			setError(e.message || t("scErrorInvalidInput"));
+			showToast(e.message || t("scErrorInvalidInput"), "error");
 			console.error("Calculation error:", e);
 		}
-	}, [ipAddress, subnetMask, t]);
+	}, [ipAddress, subnetMask, t, showToast]);
 
 	return (
 		<div className="container sc-container">
@@ -69,8 +69,6 @@ const SubnetCalculatorPage = () => {
 						<i className="fas fa-calculator"></i> {t("scCalculateButton")}
 					</button>
 				</div>
-
-				{error && <p className="sc-status-message error">{error}</p>}
 
 				{results && (
 					<div className="sc-results-area">

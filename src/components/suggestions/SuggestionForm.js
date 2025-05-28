@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 import { useTranslation } from "../../hooks/useTranslation";
+import { useToast } from "../../hooks/useToast";
 
 const SuggestionForm = ({ onSubmitSuggestion, isSubmitting }) => {
 	const { t } = useTranslation();
+	const { showToast } = useToast();
 	const [username, setUsername] = useState("");
 	const [suggestionText, setSuggestionText] = useState("");
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
+		// Made function async
 		e.preventDefault();
 		if (!suggestionText.trim()) {
-			alert(t("suggestionsTextLabel") + " " + t("errorIsEmpty"));
+			showToast(t("suggestionsTextLabel") + " " + t("errorIsEmpty"), "error");
 			return;
 		}
-		onSubmitSuggestion({ username: username.trim(), text: suggestionText.trim() });
-		setSuggestionText("");
+		try {
+			await onSubmitSuggestion({ username: username.trim(), text: suggestionText.trim() });
+			setSuggestionText("");
+		} catch (error) {
+			console.error("Suggestion submission failed:", error);
+		}
 	};
 
 	return (

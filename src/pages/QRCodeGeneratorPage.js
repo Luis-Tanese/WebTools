@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import QRCode from "qrcode";
 import { useTranslation } from "../hooks/useTranslation";
+import { useToast } from "../hooks/useToast";
 import "../css/qr-generator.css";
 
 const QRCodeGeneratorPage = () => {
 	const { t, language } = useTranslation();
+	const { showToast } = useToast();
 	const [text, setText] = useState("");
 	const [qrDataURL, setQrDataURL] = useState(null);
 	const [buttonsDisabled, setButtonsDisabled] = useState(true);
@@ -48,13 +50,14 @@ const QRCodeGeneratorPage = () => {
 					if (canvasRef.current) canvasRef.current.style.display = "none";
 					setQrDataURL(null);
 					setButtonsDisabled(true);
+					showToast(t("qrError"), "error");
 				} else {
 					setQrDataURL(canvasRef.current.toDataURL("image/png"));
 					setButtonsDisabled(false);
 				}
 			}
 		);
-	}, [text, t]);
+	}, [text, t, showToast]);
 
 	useEffect(() => {
 		generateQRCode();
@@ -72,10 +75,10 @@ const QRCodeGeneratorPage = () => {
 			if (navigator.clipboard && navigator.clipboard.write) {
 				navigator.clipboard
 					.write([new ClipboardItem({ "image/png": blob })])
-					.then(() => alert(t("qrCopiedSuccess")))
-					.catch(() => alert(t("qrCopiedError")));
+					.then(() => showToast(t("qrCopiedSuccess"), "success"))
+					.catch(() => showToast(t("qrCopiedError"), "error"));
 			} else {
-				alert(t("qrCopyFallback"));
+				showToast(t("qrCopyFallback"), "warning", 8000);
 			}
 		}, "image/png");
 	};

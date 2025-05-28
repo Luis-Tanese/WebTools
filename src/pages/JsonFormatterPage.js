@@ -1,46 +1,44 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "../hooks/useTranslation";
+import { useToast } from "../hooks/useToast";
 import "../css/json-formatter.css";
 
 const JsonFormatterPage = () => {
 	const { t } = useTranslation();
+	const { showToast } = useToast();
 	const [inputText, setInputText] = useState("");
 	const [outputText, setOutputText] = useState("");
-	const [statusMessage, setStatusMessage] = useState({ type: "", text: "" });
-
-	const clearStatus = () => setStatusMessage({ type: "", text: "" });
 
 	const handleInputChange = (event) => {
 		setInputText(event.target.value);
-		clearStatus();
 	};
 
 	const validateJson = useCallback(
 		(jsonString) => {
 			if (!jsonString.trim()) {
-				setStatusMessage({ type: "error", text: t("jfErrorEmptyInput") });
+				showToast(t("jfErrorEmptyInput"), "error");
 				return null;
 			}
 			try {
 				const parsed = JSON.parse(jsonString);
-				setStatusMessage({ type: "success", text: t("jfValidationSuccess") });
+				showToast(t("jfValidationSuccess"), "success");
 				return parsed;
 			} catch (error) {
-				setStatusMessage({ type: "error", text: `${t("jfValidationError")}: ${error.message}` });
+				showToast(`${t("jfValidationError")}: ${error.message}`, "error");
 				return null;
 			}
 		},
-		[t]
+		[t, showToast]
 	);
 
 	const handleFormat = () => {
-		clearStatus();
 		const parsedJson = validateJson(inputText);
 		if (parsedJson) {
 			try {
 				setOutputText(JSON.stringify(parsedJson, null, 2));
 			} catch (error) {
-				setStatusMessage({ type: "error", text: t("jfErrorFormatting") });
+				showToast(t("jfErrorFormatting"), "error");
+				setOutputText("");
 			}
 		} else {
 			setOutputText("");
@@ -48,13 +46,13 @@ const JsonFormatterPage = () => {
 	};
 
 	const handleMinify = () => {
-		clearStatus();
 		const parsedJson = validateJson(inputText);
 		if (parsedJson) {
 			try {
 				setOutputText(JSON.stringify(parsedJson));
 			} catch (error) {
-				setStatusMessage({ type: "error", text: t("jfErrorMinifying") });
+				showToast(t("jfErrorMinifying"), "error");
+				setOutputText("");
 			}
 		} else {
 			setOutputText("");
@@ -64,7 +62,6 @@ const JsonFormatterPage = () => {
 	const handleClearInput = () => {
 		setInputText("");
 		setOutputText("");
-		clearStatus();
 	};
 
 	const handleCopyOutput = () => {
@@ -72,11 +69,10 @@ const JsonFormatterPage = () => {
 			navigator.clipboard
 				.writeText(outputText)
 				.then(() => {
-					setStatusMessage({ type: "success", text: t("jfCopiedSuccess") });
-					setTimeout(clearStatus, 2000);
+					showToast(t("jfCopiedSuccess"), "success");
 				})
 				.catch((err) => {
-					setStatusMessage({ type: "error", text: t("jfErrorCopying") });
+					showToast(t("jfErrorCopying"), "error");
 					console.error("Copy failed: ", err);
 				});
 		}
@@ -85,7 +81,6 @@ const JsonFormatterPage = () => {
 	useEffect(() => {
 		if (inputText.trim() === "") {
 			setOutputText("");
-			clearStatus();
 		}
 	}, [inputText]);
 
@@ -137,10 +132,6 @@ const JsonFormatterPage = () => {
 						/>
 					</div>
 				</div>
-
-				{statusMessage.text && (
-					<div className={`jf-status-message ${statusMessage.type}`}>{statusMessage.text}</div>
-				)}
 
 				<div className="jf-controls">
 					<button onClick={handleFormat} className="tool-btn">

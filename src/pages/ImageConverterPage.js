@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslation } from "../hooks/useTranslation";
+import { useToast } from "../hooks/useToast";
 import "../css/image-converter.css";
 
 const acceptedInputTypes = [
@@ -28,6 +29,7 @@ const formatBytes = (bytes, decimals = 2) => {
 
 const ImageConverterPage = () => {
 	const { t } = useTranslation();
+	const { showToast } = useToast();
 	const [files, setFiles] = useState([]);
 	const [targetFormat, setTargetFormat] = useState("image/png");
 	const [quality, setQuality] = useState(0.92);
@@ -158,7 +160,7 @@ const ImageConverterPage = () => {
 
 	const handleConvertAll = async () => {
 		if (files.length === 0) {
-			alert(t("icErrorNoFiles"));
+			showToast(t("icErrorNoFiles"), "error");
 			return;
 		}
 		setIsProcessing(true);

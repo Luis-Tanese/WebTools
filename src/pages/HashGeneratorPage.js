@@ -1,10 +1,12 @@
 import React, { useState, useCallback, useRef } from "react";
 import { useTranslation } from "../hooks/useTranslation";
+import { useToast } from "../hooks/useToast";
 import { HASH_ALGORITHMS, generateHashForText, generateHashForFile } from "../utils/hashUtils";
 import "../css/hash-generator.css";
 
 const HashGeneratorPage = () => {
 	const { t } = useTranslation();
+	const { showToast } = useToast();
 	const [inputType, setInputType] = useState("text");
 	const [textInput, setTextInput] = useState("");
 	const [fileInput, setFileInput] = useState(null);
@@ -12,19 +14,11 @@ const HashGeneratorPage = () => {
 	const [selectedAlgorithm, setSelectedAlgorithm] = useState("SHA-256");
 	const [hashOutput, setHashOutput] = useState("");
 	const [isGenerating, setIsGenerating] = useState(false);
-	const [error, setError] = useState("");
-	const [successMessage, setSuccessMessage] = useState("");
-
+	
 	const fileInputRef = useRef(null);
-
-	const clearMessages = () => {
-		setError("");
-		setSuccessMessage("");
-	};
 
 	const resetOutputs = useCallback(() => {
 		setHashOutput("");
-		clearMessages();
 	}, []);
 
 	const handleInputChange = (e) => {
@@ -53,15 +47,14 @@ const HashGeneratorPage = () => {
 	};
 
 	const handleGenerateHash = useCallback(async () => {
-		clearMessages();
 		setHashOutput("");
 
 		if (inputType === "text" && !textInput.trim()) {
-			setError(t("hgErrorNoInput"));
+			showToast(t("hgErrorNoInput"), "error");
 			return;
 		}
 		if (inputType === "file" && !fileInput) {
-			setError(t("hgErrorNoInput"));
+			showToast(t("hgErrorNoInput"), "error");
 			return;
 		}
 
@@ -76,21 +69,20 @@ const HashGeneratorPage = () => {
 			setHashOutput(hash);
 		} catch (err) {
 			console.error("Hashing error:", err);
-			setError(t("hgErrorHashing") + (err.message ? `: ${err.message}` : ""));
+			showToast(t("hgErrorHashing") + (err.message ? `: ${err.message}` : ""), "error");
 		} finally {
 			setIsGenerating(false);
 		}
-	}, [inputType, textInput, fileInput, selectedAlgorithm, t]);
+	}, [inputType, textInput, fileInput, selectedAlgorithm, t, showToast]);
 
 	const handleCopyHash = () => {
 		if (hashOutput) {
 			navigator.clipboard
 				.writeText(hashOutput)
 				.then(() => {
-					setSuccessMessage(t("hgCopiedSuccess"));
-					setTimeout(clearMessages, 2000);
+					showToast(t("hgCopiedSuccess"), "success");
 				})
-				.catch(() => setError(t("hgCopiedError")));
+				.catch(() => showToast(t("hgCopiedError"), "error"));
 		}
 	};
 
@@ -170,9 +162,6 @@ const HashGeneratorPage = () => {
 					{isGenerating ? t("hgGenerating") : t("hgGenerateButtonText")}
 				</button>
 
-				{error && <p className="hg-status-message error">{error}</p>}
-				{successMessage && <p className="hg-status-message success">{successMessage}</p>}
-
 				{hashOutput && (
 					<div className="hg-output-section">
 						<h3>{t("hgResultsHeader")}</h3>
@@ -192,5 +181,4 @@ const HashGeneratorPage = () => {
 		</div>
 	);
 };
-
 export default HashGeneratorPage;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "../hooks/useTranslation";
+import { useToast } from "../hooks/useToast";
 import Papa from "papaparse";
 import yaml from "js-yaml";
 import "../css/data-converter.css";
@@ -12,35 +13,29 @@ const formatOptions = [
 
 const DataConverterPage = () => {
 	const { t } = useTranslation();
+	const { showToast } = useToast();
 	const [inputText, setInputText] = useState("");
 	const [outputText, setOutputText] = useState("");
 	const [inputFormat, setInputFormat] = useState("json");
 	const [outputFormat, setOutputFormat] = useState("csv");
-	const [status, setStatus] = useState({ type: "", messageKey: "", details: "" });
-
 	const [beautifyJson, setBeautifyJson] = useState(true);
 	const [csvHeader, setCsvHeader] = useState(true);
 
-	const clearStatus = () => setStatus({ type: "", messageKey: "", details: "" });
-
 	const handleInputChange = (e) => {
 		setInputText(e.target.value);
-		clearStatus();
 	};
 
 	const handleClearInput = () => {
 		setInputText("");
 		setOutputText("");
-		clearStatus();
 	};
 
 	const handleCopyOutput = () => {
 		if (outputText) {
 			navigator.clipboard
 				.writeText(outputText)
-				.then(() => setStatus({ type: "success", messageKey: "dcCopiedSuccess" }))
-				.catch(() => setStatus({ type: "error", messageKey: "dcErrorCopying" }));
-			setTimeout(clearStatus, 2500);
+				.then(() => showToast(t("dcCopiedSuccess"), "success"))
+				.catch(() => showToast(t("dcErrorCopying"), "error"));
 		}
 	};
 
@@ -54,13 +49,11 @@ const DataConverterPage = () => {
 		setOutputFormat(currentInFormat);
 		setInputText(currentOutput);
 		setOutputText(currentInput);
-		clearStatus();
 	};
 
 	const convertData = useCallback(() => {
-		clearStatus();
 		if (!inputText.trim()) {
-			setStatus({ type: "error", messageKey: "dcErrorEmptyInput" });
+			showToast(t("dcErrorEmptyInput"), "error");
 			setOutputText("");
 			return;
 		}
@@ -95,13 +88,13 @@ const DataConverterPage = () => {
 					throw new Error(t("dcErrorInvalidInputFormat"));
 			}
 		} catch (error) {
-			setStatus({ type: "error", messageKey: "dcErrorParsingInput", details: error.message });
+			showToast(t("dcErrorParsingInput") + (error.message ? `: ${error.message}` : ""), "error");
 			setOutputText("");
 			return;
 		}
 
 		if (intermediateJson === undefined || intermediateJson === null) {
-			setStatus({ type: "error", messageKey: "dcErrorParsingInput", details: t("dcErrorNoDataAfterParse") });
+			showToast(t("dcErrorParsingInput") + ": " + t("dcErrorNoDataAfterParse"), "error");
 			setOutputText("");
 			return;
 		}
@@ -125,17 +118,16 @@ const DataConverterPage = () => {
 					throw new Error(t("dcErrorInvalidOutputFormat"));
 			}
 			setOutputText(resultText);
-			setStatus({ type: "success", messageKey: "dcConversionSuccess" });
+			showToast(t("dcConversionSuccess"), "success");
 		} catch (error) {
-			setStatus({ type: "error", messageKey: "dcErrorFormattingOutput", details: error.message });
+			showToast(t("dcErrorFormattingOutput") + (error.message ? `: ${error.message}` : ""), "error");
 			setOutputText("");
 		}
-	}, [inputText, inputFormat, outputFormat, beautifyJson, csvHeader, t]);
+	}, [inputText, inputFormat, outputFormat, beautifyJson, csvHeader, t, showToast]);
 
 	useEffect(() => {
 		if (!inputText.trim()) {
 			setOutputText("");
-			clearStatus();
 		}
 	}, [inputFormat, outputFormat, inputText]);
 
@@ -252,12 +244,6 @@ const DataConverterPage = () => {
 					</div>
 				</div>
 
-				{status.messageKey && (
-					<div className={`dc-status-message ${status.type}`}>
-						{t(status.messageKey)} {status.details && `(${status.details})`}
-					</div>
-				)}
-
 				<div className="dc-process-bar">
 					<button onClick={convertData} className="tool-btn">
 						<i className="fas fa-cogs"></i> {t("dcConvertBtn")}
@@ -267,5 +253,4 @@ const DataConverterPage = () => {
 		</div>
 	);
 };
-
 export default DataConverterPage;

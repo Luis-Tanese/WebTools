@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "../hooks/useTranslation";
+import { useToast } from "../hooks/useToast";
 import "../css/base64-converter.css";
 
 const arrayBufferToBase64 = (buffer) => {
@@ -19,6 +20,7 @@ const formatBytes = (bytes, decimals = 2) => {
 
 const Base64ConverterPage = () => {
 	const { t, language } = useTranslation();
+	const { showToast } = useToast();
 	const [mode, setMode] = useState("encode");
 	const [inputType, setInputType] = useState("text");
 	const [inputText, setInputText] = useState("");
@@ -57,7 +59,7 @@ const Base64ConverterPage = () => {
 
 		if (inputType === "text") {
 			if (!inputText.trim()) {
-				alert(t("b64ErrorNoInput"));
+				showToast(t("b64ErrorNoInput"), "error");
 				return;
 			}
 			if (mode === "encode") {
@@ -68,7 +70,8 @@ const Base64ConverterPage = () => {
 					setOutputText(window.btoa(binary));
 					setCopyDisabled(false);
 				} catch (e) {
-					setOutputText(t("b64ErrorEncoding"));
+					setOutputText("");
+					showToast(t("b64ErrorEncoding"), "error");
 					console.error("Encoding error:", e);
 				}
 			} else {
@@ -84,13 +87,14 @@ const Base64ConverterPage = () => {
 					setOutputFileInfo(t("b64DecodedTextReady"));
 					setDownloadDisabled(false);
 				} catch (e) {
-					setOutputText(t("b64ErrorDecodingText"));
+					setOutputText("");
+					showToast(t("b64ErrorDecodingText"), "error");
 					console.error("Decoding text error:", e);
 				}
 			}
 		} else {
 			if (!inputFile) {
-				alert(t("b64ErrorNoFileSelected"));
+				showToast(t("b64ErrorNoFileSelected"), "error");
 				return;
 			}
 			const reader = new FileReader();
@@ -119,12 +123,13 @@ const Base64ConverterPage = () => {
 							inputFile.name.split(".")[0] + "_decoded." + (inputFile.name.split(".").pop() || "bin")
 						);
 					} catch (err) {
-						setOutputFileInfo(t("b64ErrorDecodingFile"));
+						setOutputFileInfo("");
+						showToast(t("b64ErrorDecodingFile"), "error");
 						console.error("Decoding file error:", err);
 					}
 				}
 			};
-			reader.onerror = () => alert(t("b64ErrorReadingFile"));
+			reader.onerror = () => showToast(t("b64ErrorReadingFile"), "error");
 			if (mode === "encode") reader.readAsArrayBuffer(inputFile);
 			else reader.readAsText(inputFile);
 		}
@@ -134,8 +139,11 @@ const Base64ConverterPage = () => {
 		if (outputText) {
 			navigator.clipboard
 				.writeText(outputText)
-				.then(() => alert(t("b64CopiedSuccess")))
-				.catch((err) => console.error("Copy failed: ", err));
+				.then(() => showToast(t("b64CopiedSuccess"), "success"))
+				.catch((err) => {
+					showToast(t("qrCopiedError"), "error");
+					console.error("Copy failed: ", err);
+				});
 		}
 	};
 

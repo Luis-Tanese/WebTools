@@ -1,21 +1,22 @@
 import React, { useState, useCallback } from "react";
 import { useTranslation } from "../hooks/useTranslation";
+import { useToast } from "../hooks/useToast";
 import { generateLoremIpsum } from "../utils/loremUtils";
 import "../css/lorem-ipsum-generator.css";
 
 const LoremIpsumGeneratorPage = () => {
 	const { t } = useTranslation();
+	const { showToast } = useToast();
 	const [generateType, setGenerateType] = useState("paragraphs");
 	const [amount, setAmount] = useState(3);
 	const [startWithLorem, setStartWithLorem] = useState(true);
 	const [generatedText, setGeneratedText] = useState("");
-	const [statusMessage, setStatusMessage] = useState("");
 
 	const handleGenerate = useCallback(() => {
-		setStatusMessage("");
 		const numAmount = parseInt(amount, 10);
 		if (isNaN(numAmount) || numAmount <= 0) {
-			setGeneratedText("Please enter a valid positive amount."); 
+			showToast("Please enter a valid positive amount.", "error");
+			setGeneratedText("");
 			return;
 		}
 		const options = {
@@ -25,17 +26,16 @@ const LoremIpsumGeneratorPage = () => {
 		};
 		const text = generateLoremIpsum(options);
 		setGeneratedText(text);
-	}, [generateType, amount, startWithLorem]);
+	}, [generateType, amount, startWithLorem, showToast]);
 
 	const handleCopy = () => {
 		if (generatedText) {
 			navigator.clipboard
 				.writeText(generatedText)
 				.then(() => {
-					setStatusMessage(t("lipCopiedSuccess"));
-					setTimeout(() => setStatusMessage(""), 2000);
+					showToast(t("lipCopiedSuccess"), "success");
 				})
-				.catch(() => setStatusMessage(t("lipCopiedError")));
+				.catch(() => showToast(t("lipCopiedError"), "error"));
 		}
 	};
 
@@ -88,16 +88,6 @@ const LoremIpsumGeneratorPage = () => {
 						<i className="fas fa-cogs"></i> {t("lipGenerateButton")}
 					</button>
 				</div>
-
-				{statusMessage && (
-					<p
-						className={`lip-status-message ${
-							statusMessage.includes(t("lipCopiedError")) ? "error" : "success"
-						}`}
-					>
-						{statusMessage}
-					</p>
-				)}
 
 				<div className="lip-output-section">
 					<div className="lip-output-header">

@@ -45,7 +45,7 @@
 	margin-left: 8px;
 	padding: 6px 12px;
 	font-size: 0.85em;
-    text-decoration: none !important;
+	text-decoration: none !important;
 }
 
 .suggestion-popup .dismiss-btn {
@@ -222,23 +222,6 @@
 	border: 1px solid var(--color-border);
 	background-color: var(--color-background);
 	color: var(--color-text);
-}
-
-.status-message-global {
-	padding: 10px 15px;
-	margin-bottom: 15px;
-	border-radius: var(--border-radius);
-	text-align: center;
-}
-.status-message-global.success {
-	background-color: rgba(46, 204, 113, 0.15);
-	color: var(--color-success);
-	border: 1px solid var(--color-success);
-}
-.status-message-global.error {
-	background-color: rgba(231, 76, 60, 0.15);
-	color: var(--color-error);
-	border: 1px solid var(--color-error);
 }
 
 .client-id-info {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "../hooks/useTranslation";
+import { useToast } from "../hooks/useToast";
 import {
 	parseHex,
 	parseRgb,
@@ -15,6 +16,7 @@ const initialRgb = { r: 255, g: 0, b: 0, a: 1 };
 
 const ColorConverterPage = () => {
 	const { t } = useTranslation();
+	const { showToast } = useToast();
 
 	const [currentColorRgb, setCurrentColorRgb] = useState(initialRgb);
 
@@ -24,10 +26,7 @@ const ColorConverterPage = () => {
 	const [hslInput, setHslInput] = useState(outputFormats.hsla || "");
 	const [cssNameInput, setCssNameInput] = useState("red");
 
-	const [statusMessage, setStatusMessage] = useState("");
 	const [activeInput, setActiveInput] = useState(null);
-
-	const clearStatus = () => setStatusMessage("");
 
 	const syncAllFromRgb = useCallback((newRgb, currentlyEditing) => {
 		if (newRgb && typeof newRgb.r !== "undefined") {
@@ -61,7 +60,6 @@ const ColorConverterPage = () => {
 	}, [currentColorRgb, syncAllFromRgb, activeInput]);
 
 	const handleInputChange = (inputType, value) => {
-		clearStatus();
 		setActiveInput(inputType);
 		let newRgb = null;
 		let isValidInputForType = true;
@@ -108,12 +106,12 @@ const ColorConverterPage = () => {
 				newRgb.a < 0 ||
 				newRgb.a > 1
 			) {
-				setStatusMessage(t("ccErrorInvalidValue"));
+				showToast(t("ccErrorInvalidValue"), "error");
 			} else {
 				setCurrentColorRgb(newRgb);
 			}
 		} else if (!isValidInputForType && value.trim() !== "") {
-			setStatusMessage(t("ccErrorInvalidFormat", { format: inputType.toUpperCase() }));
+			showToast(t("ccErrorInvalidFormat", { format: inputType.toUpperCase() }), "error");
 		}
 	};
 
@@ -131,10 +129,9 @@ const ColorConverterPage = () => {
 			navigator.clipboard
 				.writeText(textToCopy)
 				.then(() => {
-					setStatusMessage(t("ccCopiedSuccess", { value: textToCopy }));
-					setTimeout(clearStatus, 2000);
+					showToast(t("ccCopiedSuccess", { value: textToCopy }), "success");
 				})
-				.catch(() => setStatusMessage(t("ccErrorCopying")));
+				.catch(() => showToast(t("ccErrorCopying"), "error"));
 		}
 	};
 
@@ -216,20 +213,6 @@ const ColorConverterPage = () => {
 						aria-label={t("ccColorPickerLabel")}
 					/>
 				</div>
-
-				{statusMessage && (
-					<div
-						className={`cc-status-message ${
-							statusMessage.includes(t("ccErrorPrefix", { defaultValue: "Error" })) ||
-							statusMessage.includes(t("ccErrorInvalidValue", { defaultValue: "Invalid value" })) ||
-							statusMessage.includes(t("ccErrorInvalidFormat", { defaultValue: "Invalid format" }))
-								? "error"
-								: "success"
-						}`}
-					>
-						{statusMessage}
-					</div>
-				)}
 
 				<div className="cc-output-section">
 					<h3>{t("ccOutputFormatsHeader")}</h3>

@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useTranslation } from "../hooks/useTranslation";
+import { useToast } from "../hooks/useToast";
 import "../css/url-shortener.css";
 
 const SHORTENER_API_URL = "https://is.gd/create.php?format=json&url=";
@@ -7,11 +8,10 @@ const SHORTENER_API_URL = "https://is.gd/create.php?format=json&url=";
 
 const UrlShortenerPage = () => {
 	const { t } = useTranslation();
+	const { showToast } = useToast();
 	const [longUrl, setLongUrl] = useState("");
 	const [shortenedUrl, setShortenedUrl] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState("");
-	const [successMessage, setSuccessMessage] = useState("");
 
 	const isValidUrl = (string) => {
 		try {
@@ -23,16 +23,14 @@ const UrlShortenerPage = () => {
 	};
 
 	const handleShorten = useCallback(async () => {
-		setError("");
-		setSuccessMessage("");
 		setShortenedUrl("");
 
 		if (!longUrl.trim()) {
-			setError(t("usErrorInvalidUrl"));
+			showToast(t("usErrorInvalidUrl"), "error");
 			return;
 		}
 		if (!isValidUrl(longUrl)) {
-			setError(t("usErrorInvalidUrl"));
+			showToast(t("usErrorInvalidUrl"), "error");
 			return;
 		}
 
@@ -44,27 +42,26 @@ const UrlShortenerPage = () => {
 			if (data.shorturl) {
 				setShortenedUrl(data.shorturl);
 			} else if (data.errormessage) {
-				setError(`${t("usErrorShortening")}: ${data.errormessage}`);
+				showToast(`${t("usErrorShortening")}: ${data.errormessage}`, "error");
 			} else {
-				setError(t("usErrorShortening"));
+				showToast(t("usErrorShortening"), "error");
 			}
 		} catch (err) {
 			console.error("Shortening error:", err);
-			setError(t("usErrorShortening"));
+			showToast(t("usErrorShortening"), "error");
 		} finally {
 			setIsLoading(false);
 		}
-	}, [longUrl, t]);
+	}, [longUrl, t, showToast]);
 
 	const handleCopy = () => {
 		if (shortenedUrl) {
 			navigator.clipboard
 				.writeText(shortenedUrl)
 				.then(() => {
-					setSuccessMessage(t("usCopiedSuccess"));
-					setTimeout(() => setSuccessMessage(""), 2000);
+					showToast(t("usCopiedSuccess"), "success");
 				})
-				.catch(() => setError(t("usCopiedError")));
+				.catch(() => showToast(t("usCopiedError"), "error"));
 		}
 	};
 
@@ -91,9 +88,6 @@ const UrlShortenerPage = () => {
 						{isLoading ? t("usShortening") : t("usShortenButton")}
 					</button>
 				</div>
-
-				{error && <p className="us-status-message error">{error}</p>}
-				{successMessage && <p className="us-status-message success">{successMessage}</p>}
 
 				{shortenedUrl && (
 					<div className="us-output-section">

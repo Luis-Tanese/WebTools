@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { marked } from "marked";
 import { useTranslation } from "../hooks/useTranslation";
+import { useToast } from "../hooks/useToast";
 import "../css/markdown-editor.css";
 
 const sampleMarkdownText = `
@@ -51,6 +52,7 @@ Another paragraph.
 
 const MarkdownEditorPage = () => {
 	const { t } = useTranslation();
+	const { showToast } = useToast();
 	const [markdown, setMarkdown] = useState("");
 	const [htmlPreview, setHtmlPreview] = useState("");
 
@@ -78,15 +80,15 @@ const MarkdownEditorPage = () => {
 	const handleCopyMarkdown = () => {
 		navigator.clipboard
 			.writeText(markdown)
-			.then(() => alert(t("mdCopiedMarkdownSuccess")))
-			.catch(() => alert(t("mdCopiedError")));
+			.then(() => showToast(t("mdCopiedMarkdownSuccess"), "success"))
+			.catch(() => showToast(t("mdCopiedError"), "error"));
 	};
 
 	const handleCopyHtml = () => {
 		navigator.clipboard
 			.writeText(htmlPreview)
-			.then(() => alert(t("mdCopiedHtmlSuccess")))
-			.catch(() => alert(t("mdCopiedError")));
+			.then(() => showToast(t("mdCopiedHtmlSuccess"), "success"))
+			.catch(() => showToast(t("mdCopiedError"), "error"));
 	};
 
 	return (

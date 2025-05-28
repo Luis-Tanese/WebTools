@@ -1,19 +1,29 @@
 import React, { useState } from "react";
 import { useTranslation } from "../../hooks/useTranslation";
+import { useToast } from "../../hooks/useToast";
 
 const CommentForm = ({ suggestionId, onCommentSubmit, isSubmitting }) => {
 	const { t } = useTranslation();
+	const { showToast } = useToast();
 	const [commentUsername, setCommentUsername] = useState("");
 	const [commentText, setCommentText] = useState("");
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
+		// Made function async
 		e.preventDefault();
 		if (!commentText.trim()) {
-			alert(t("commentTextLabel") + " " + t("errorIsEmpty"));
+			showToast(t("commentTextLabel") + " " + t("errorIsEmpty"), "error");
 			return;
 		}
-		onCommentSubmit(suggestionId, { commentUsername: commentUsername.trim(), commentText: commentText.trim() });
-		setCommentText("");
+		try {
+			await onCommentSubmit(suggestionId, {
+				commentUsername: commentUsername.trim(),
+				commentText: commentText.trim(),
+			});
+			setCommentText("");
+		} catch (error) {
+			console.error("Comment submission failed:", error);
+		}
 	};
 
 	return (

@@ -4,35 +4,35 @@ import SuggestionForm from "../components/suggestions/SuggestionForm";
 import SuggestionList from "../components/suggestions/SuggestionList";
 import BackButton from "../components/BackButton";
 import "../css/suggestions.css";
+import { useToast } from "../hooks/useToast";
 
 const API_BASE_URL = "https://web-tools-server.vercel.app";
 
 const SuggestionPage = () => {
 	const { t } = useTranslation();
+	const { showToast } = useToast();
 	const [suggestions, setSuggestions] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState("");
-	const [successMessage, setSuccessMessage] = useState("");
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [sortOption, setSortOption] = useState("createdAtDesc");
 
 	const fetchSuggestions = useCallback(async () => {
 		setIsLoading(true);
-		setError("");
 		try {
 			const response = await fetch(`${API_BASE_URL}/api/suggestions?sortBy=${sortOption}`);
 			if (!response.ok) {
-				throw new Error(t("errorAPI") + ` (${response.status})`);
+				const errorData = await response.json().catch(() => ({ message: t("errorAPI") }));
+				throw new Error(errorData.message || t("errorAPI") + ` (${response.status})`);
 			}
 			const data = await response.json();
 			setSuggestions(data);
 		} catch (err) {
 			console.error("Fetch suggestions error:", err);
-			setError(err.message || t("errorNetwork"));
+			showToast(err.message || t("errorNetwork"), "error");
 		} finally {
 			setIsLoading(false);
 		}
-	}, [t, sortOption]);
+	}, [t, sortOption, showToast]);
 
 	useEffect(() => {
 		fetchSuggestions();
@@ -40,8 +40,6 @@ const SuggestionPage = () => {
 
 	const handleSubmitSuggestion = async (suggestionData) => {
 		setIsSubmitting(true);
-		setError("");
-		setSuccessMessage("");
 		try {
 			const response = await fetch(`${API_BASE_URL}/api/suggestions`, {
 				method: "POST",
@@ -52,19 +50,17 @@ const SuggestionPage = () => {
 				const errData = await response.json().catch(() => ({ message: t("errorAPI") }));
 				throw new Error(errData.message || t("errorAPI") + ` (${response.status})`);
 			}
-			setSuccessMessage(t("suggestionSubmittedSuccess"));
+			showToast(t("suggestionSubmittedSuccess"), "success");
 			fetchSuggestions();
 		} catch (err) {
 			console.error("Submit suggestion error:", err);
-			setError(err.message || t("errorNetwork"));
+			showToast(err.message || t("errorNetwork"), "error");
 		} finally {
 			setIsSubmitting(false);
 		}
 	};
 
 	const handleVote = async (suggestionId, voteType, clientId) => {
-		setError("");
-		setSuccessMessage("");
 		try {
 			const response = await fetch(`${API_BASE_URL}/api/suggestions/${suggestionId}/vote`, {
 				method: "POST",
@@ -77,16 +73,14 @@ const SuggestionPage = () => {
 			}
 			const updatedSuggestion = await response.json();
 			setSuggestions((prev) => prev.map((s) => (s._id === suggestionId ? updatedSuggestion : s)));
-			setSuccessMessage(t("suggestionVoteSuccess"));
+			showToast(t("suggestionVoteSuccess"), "success");
 		} catch (err) {
 			console.error("Vote error:", err);
-			setError(err.message || t("errorNetwork"));
+			showToast(err.message || t("errorNetwork"), "error");
 		}
 	};
 
 	const handleAddComment = async (suggestionId, commentData) => {
-		setError("");
-		setSuccessMessage("");
 		try {
 			const response = await fetch(`${API_BASE_URL}/api/suggestions/${suggestionId}/comments`, {
 				method: "POST",
@@ -99,10 +93,10 @@ const SuggestionPage = () => {
 			}
 			const updatedSuggestion = await response.json();
 			setSuggestions((prev) => prev.map((s) => (s._id === suggestionId ? updatedSuggestion : s)));
-			setSuccessMessage(t("suggestionCommentSuccess"));
+			showToast(t("suggestionCommentSuccess"), "success");
 		} catch (err) {
 			console.error("Add comment error:", err);
-			setError(err.message || t("errorNetwork"));
+			showToast(err.message || t("errorNetwork"), "error");
 			throw err;
 		}
 	};
@@ -112,21 +106,19 @@ const SuggestionPage = () => {
 	};
 
 	return (
-        
 		<div className="container suggestions-container">
-            <BackButton></BackButton>
+			<BackButton></BackButton>
 			<header className="tool-header">
 				<h1>{t("suggestionsPageTitle")}</h1>
 				<p className="subtitle">{t("suggestionsPageSubtitle")}</p>
 			</header>
 			<main>
-				{successMessage && <p className="status-message-global success">{successMessage}</p>}
-				{error && <p className="status-message-global error">{error}</p>}
-
 				<SuggestionForm onSubmitSuggestion={handleSubmitSuggestion} isSubmitting={isSubmitting} />
 
 				{isLoading ? (
-					<p>{t("loading") || "Loading suggestions..."}</p>
+					<p style={{ textAlign: "center", margin: "20px 0" }}>
+						<i className="fas fa-spinner fa-spin"></i> {t("loading") || "Loading suggestions..."}
+					</p>
 				) : (
 					<SuggestionList
 						suggestions={suggestions}
