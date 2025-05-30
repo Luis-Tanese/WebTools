@@ -13,8 +13,10 @@
 	/* Cores do Tema */
 	--color-text: #eee5da;
 	--color-background: #1a1d24;
+	--color-background-rgb: 26, 29, 36;
 	--color-surface: #252932;
 	--color-border: #3e4450;
+	-color-border-rgb: 62, 68, 80;
 
 	/* Cores de Ascentuação */
 	--color-accent: #a06cd5;

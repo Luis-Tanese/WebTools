@@ -119,11 +119,10 @@ const SuggestionPage = () => {
 			</header>
 			<main>
 				<SuggestionForm onSubmitSuggestion={handleSubmitSuggestion} isSubmitting={isSubmitting} />
-
 				{isLoading ? (
-					<p style={{ textAlign: "center", margin: "20px 0" }}>
+					<div className="loading-spinner-container">
 						<i className="fas fa-spinner fa-spin"></i> {t("loading") || "Loading suggestions..."}
-					</p>
+					</div>
 				) : (
 					<SuggestionList
 						suggestions={suggestions}

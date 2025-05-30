@@ -22,5 +22,4 @@ This project has a collection of handy web tools:
 -   [x] **Hash Generator**: Calculate MD5, SHA-1, SHA-256, SHA-512 hashes for text or files.
 -   [x] **URL Shortener**: Shorten long URLs for easier sharing using a public API.
 -   [x] **Universal Base Converter**: Convert text and numbers between Binary, Decimal, Hex, Octal, and ASCII.
--   [ ] **Image Improver**: Still thinking about it...
 -   [ ] **MP4 to MP3 Converter**: Sounds good, will try to implement later.

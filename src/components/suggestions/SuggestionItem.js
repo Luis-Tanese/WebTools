@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "../../hooks/useTranslation";
 import CommentList from "./CommentList";
 import CommentForm from "./CommentForm";
@@ -12,16 +12,27 @@ const getClientId = () => {
 	return clientId;
 };
 
-const SuggestionItem = ({ suggestion, onVote, onAddComment, onUpdateSuggestion }) => {
+const SuggestionItem = ({ suggestion, onVote, onAddComment }) => {
 	const { t, language } = useTranslation();
 	const [showComments, setShowComments] = useState(false);
 	const [isSubmittingComment, setIsSubmittingComment] = useState(false);
-
 	const [clientId, setClientId] = useState("");
+
+	const wrapperRef = useRef(null);
 
 	useEffect(() => {
 		setClientId(getClientId());
 	}, []);
+
+	useEffect(() => {
+		if (wrapperRef.current) {
+			if (showComments) {
+				wrapperRef.current.style.maxHeight = wrapperRef.current.scrollHeight + "px";
+			} else {
+				wrapperRef.current.style.maxHeight = "0px";
+			}
+		}
+	}, [showComments, suggestion.comments]);
 
 	const handleVote = (voteType) => {
 		if (!clientId) return;
@@ -89,16 +100,18 @@ const SuggestionItem = ({ suggestion, onVote, onAddComment, onUpdateSuggestion }
 				</button>
 			</div>
 
-			{showComments && (
-				<div className="comments-section">
-					<CommentList comments={suggestion.comments || []} />
-					<CommentForm
-						suggestionId={suggestion._id}
-						onCommentSubmit={handleCommentSubmit}
-						isSubmitting={isSubmittingComment}
-					/>
-				</div>
-			)}
+			<div ref={wrapperRef} className={`comments-section-wrapper ${showComments ? "open" : ""}`}>
+				{showComments && (
+					<div className="comments-section">
+						<CommentList comments={suggestion.comments || []} />
+						<CommentForm
+							suggestionId={suggestion._id}
+							onCommentSubmit={handleCommentSubmit}
+							isSubmitting={isSubmittingComment}
+						/>
+					</div>
+				)}
+			</div>
 		</div>
 	);
 };
