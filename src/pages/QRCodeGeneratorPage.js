@@ -12,18 +12,19 @@ const QRCodeGeneratorPage = () => {
 	const [buttonsDisabled, setButtonsDisabled] = useState(true);
 	const canvasRef = useRef(null);
 	const qrPlaceholderTextRef = useRef(null);
+	const qrDisplayRef = useRef(null);
 
 	const generateQRCode = useCallback(() => {
 		if (!text.trim()) {
 			if (canvasRef.current) {
 				const ctx = canvasRef.current.getContext("2d");
 				ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+				canvasRef.current.style.display = "none";
 			}
 			if (qrPlaceholderTextRef.current) {
 				qrPlaceholderTextRef.current.style.display = "block";
 				qrPlaceholderTextRef.current.textContent = t("qrCanvasPlaceholder");
 			}
-			if (canvasRef.current) canvasRef.current.style.display = "none";
 			setQrDataURL(null);
 			setButtonsDisabled(true);
 			return;
@@ -32,11 +33,27 @@ const QRCodeGeneratorPage = () => {
 		if (qrPlaceholderTextRef.current) qrPlaceholderTextRef.current.style.display = "none";
 		if (canvasRef.current) canvasRef.current.style.display = "block";
 
+		let canvasSize = 256;
+		if (qrDisplayRef.current) {
+			const computedStyle = getComputedStyle(qrDisplayRef.current);
+			const newSize = parseInt(computedStyle.width, 10);
+			if (!isNaN(newSize) && newSize > 0) {
+				canvasSize = newSize;
+			}
+		}
+
+		if (!canvasRef.current) {
+			console.error("Canvas ref not available for QR Code generation.");
+			showToast(t("qrError"), "error");
+			setButtonsDisabled(true);
+			return;
+		}
+
 		QRCode.toCanvas(
 			canvasRef.current,
 			text,
 			{
-				width: 256,
+				width: canvasSize,
 				margin: 1,
 				errorCorrectionLevel: "H",
 			},
@@ -52,7 +69,9 @@ const QRCodeGeneratorPage = () => {
 					setButtonsDisabled(true);
 					showToast(t("qrError"), "error");
 				} else {
-					setQrDataURL(canvasRef.current.toDataURL("image/png"));
+					if (canvasRef.current) {
+						setQrDataURL(canvasRef.current.toDataURL("image/png"));
+					}
 					setButtonsDisabled(false);
 				}
 			}
@@ -69,16 +88,46 @@ const QRCodeGeneratorPage = () => {
 		}
 	}, [language, t, text]);
 
+	useEffect(() => {
+		const handleResize = () => {
+			if (
+				text.trim() &&
+				canvasRef.current &&
+				canvasRef.current.style.display !== "none" &&
+				qrDisplayRef.current
+			) {
+				generateQRCode();
+			}
+		};
+
+		let resizeTimer;
+		const debouncedHandleResize = () => {
+			clearTimeout(resizeTimer);
+			resizeTimer = setTimeout(handleResize, 250);
+		};
+
+		window.addEventListener("resize", debouncedHandleResize);
+		return () => {
+			clearTimeout(resizeTimer);
+			window.removeEventListener("resize", debouncedHandleResize);
+		};
+	}, [text, generateQRCode]);
+
 	const handleCopy = () => {
 		if (!canvasRef.current || !qrDataURL) return;
 		canvasRef.current.toBlob((blob) => {
-			if (navigator.clipboard && navigator.clipboard.write) {
+			if (blob && navigator.clipboard && navigator.clipboard.write) {
 				navigator.clipboard
 					.write([new ClipboardItem({ "image/png": blob })])
 					.then(() => showToast(t("qrCopiedSuccess"), "success"))
-					.catch(() => showToast(t("qrCopiedError"), "error"));
-			} else {
+					.catch((err) => {
+						console.error("Copy to clipboard error:", err);
+						showToast(t("qrCopiedError"), "error");
+					});
+			} else if (blob) {
 				showToast(t("qrCopyFallback"), "warning", 8000);
+			} else {
+				showToast(t("qrCopiedError"), "error");
 			}
 		}, "image/png");
 	};
@@ -88,7 +137,9 @@ const QRCodeGeneratorPage = () => {
 		const link = document.createElement("a");
 		link.download = "qrcode.png";
 		link.href = qrDataURL;
+		document.body.appendChild(link);
 		link.click();
+		document.body.removeChild(link);
 	};
 
 	return (
@@ -109,9 +160,9 @@ const QRCodeGeneratorPage = () => {
 					/>
 				</div>
 
-				<div className="qr-code-display">
+				<div className="qr-code-display" ref={qrDisplayRef}>
 					<canvas ref={canvasRef} id="qr-canvas" style={{ display: "none" }}></canvas>
-					<p ref={qrPlaceholderTextRef} id="qr-placeholder-text">
+					<p ref={qrPlaceholderTextRef} id="qr-placeholder-text" style={{ display: "block" }}>
 						{t("qrCanvasPlaceholder")}
 					</p>
 				</div>

@@ -7,7 +7,7 @@ const regexSamples = [
 	{
 		nameKey: "rtSampleEmail",
 		pattern: "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$",
-		flags: "g",
+		flags: "gm",
 		testString: "silly@tanese.com\ninvalid-email\nsales.cat@domain.com.br\nsillycat@gmail.com",
 	},
 	{

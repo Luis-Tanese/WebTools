@@ -38,7 +38,7 @@ const RootLayout = () => {
 				</div>
 			</PageTransitionWrapper>
 
-			<Footer />
+			<Footer className={isTransitioning ? "slide-out-bottom" : ""} />
 		</>
 	);
 };

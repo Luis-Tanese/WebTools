@@ -27,6 +27,7 @@ import { ToastProvider } from "./contexts/ToastContext";
 import ToastContainer from "./components/ToastContainer";
 import { TransitionProvider } from "./contexts/TransitionContext";
 import RootLayout from "./components/RootLayout";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
 	const [isLoading, setIsLoading] = useState(true);
@@ -57,6 +58,7 @@ function App() {
 	return (
 		<ToastProvider>
 			<Router>
+				<ScrollToTop />
 				<TransitionProvider>
 					<LanguageProvider>
 						<Routes>

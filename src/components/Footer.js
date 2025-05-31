@@ -2,11 +2,12 @@ import React from "react";
 import { useTranslation } from "../hooks/useTranslation";
 import "../css/index.css";
 
-const Footer = () => {
+const Footer = ({ className }) => {
 	const { t } = useTranslation();
+	const footerClasses = `app-footer ${className || ""}`.trim();
 
 	return (
-		<footer>
+		<footer className={footerClasses}>
 			<div className="container">
 				<p>
 					<span>{t("footerMadeWith")}</span>
