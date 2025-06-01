@@ -7,6 +7,7 @@
 	flex-direction: column;
 	gap: 10px;
 	pointer-events: none;
+	align-items: flex-end;
 }
 
 .toast {
@@ -104,14 +105,54 @@
 
 @media (max-width: 600px) {
 	.toast-container {
-		top: 10px;
-		right: 10px;
-		left: 10px;
+		top: auto;
+		bottom: 15px;
+		left: 15px;
+		right: 15px;
 		width: auto;
 		align-items: center;
+		justify-content: center;
+	}
+
+	.toast {
+		max-width: calc(100vw - 30px);
+		min-width: unset;
+		padding: 10px 12px;
+		font-size: 0.9em;
+	}
+
+	.toast-message {
+		font-size: 0.9em;
+	}
+
+	.toast-close-btn {
+		font-size: 1em;
+		padding: 3px;
+	}
+
+	@keyframes slideIn {
+		from {
+			transform: translateY(100%);
+			opacity: 0;
+		}
+		to {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+}
+
+@media (max-width: 375px) {
+	.toast-container {
+		bottom: 10px;
+		left: 10px;
+		right: 10px;
 	}
 	.toast {
-		max-width: 95%;
-		min-width: unset;
+		max-width: calc(100vw - 20px);
+		padding: 8px 10px;
+	}
+	.toast-message {
+		font-size: 0.85em;
 	}
 }

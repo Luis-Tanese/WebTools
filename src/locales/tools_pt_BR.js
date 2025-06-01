@@ -211,6 +211,13 @@ const tools_pt_BR = [
 		],
 	},
 	{
+		title: "Calculadora de Dan",
+		description: "Calcule as pontuações individuais dos mapas para clears de dan no osu!mania.",
+		path: "/tools/mania-dan-calculator",
+		icon: "fas fa-calculator",
+		searchKeywords: ["osu", "mania", "dan", "calculadora", "pontuação", "precisão", "notas"],
+	},
+	{
 		title: "Sugerir uma Ferramenta",
 		description: "Tem uma ideia para uma nova ferramenta? Compartilhe com a comunidade!",
 		path: "/suggestions",

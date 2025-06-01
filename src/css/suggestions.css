@@ -20,6 +20,7 @@
 	max-width: 350px;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 .suggestion-popup-content {
 	flex-grow: 1;
@@ -59,6 +60,65 @@
 }
 .suggestion-popup .dismiss-btn:hover {
 	opacity: 1;
+}
+
+@media (max-width: 600px) {
+	.suggestion-popup {
+		bottom: 15px;
+		left: 15px;
+		right: 15px;
+		max-width: unset;
+		padding: 12px 15px;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 8px;
+	}
+
+	.suggestion-popup-content {
+		padding-right: 0;
+		text-align: center;
+		order: 1;
+	}
+	.suggestion-popup-content p {
+		font-size: 0.9em;
+	}
+
+	.suggestion-popup-actions {
+		margin-top: 0;
+		justify-content: center;
+		width: 100%;
+		order: 2;
+	}
+	.suggestion-popup-actions a {
+		width: 100%;
+		text-align: center;
+		margin-left: 0;
+		padding: 8px 12px;
+		font-size: 0.9em;
+	}
+
+	.suggestion-popup .dismiss-btn {
+		top: 8px;
+		right: 8px;
+		font-size: 1.1em;
+		order: 0;
+		position: absolute;
+	}
+}
+
+@media (max-width: 375px) {
+	.suggestion-popup {
+		bottom: 10px;
+		left: 10px;
+		right: 10px;
+		padding: 10px 12px;
+	}
+	.suggestion-popup-content p {
+		font-size: 0.85em;
+	}
+	.suggestion-popup-actions a {
+		font-size: 0.85em;
+	}
 }
 
 .suggestion-form {

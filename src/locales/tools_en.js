@@ -208,6 +208,13 @@ const tools_en = [
 		],
 	},
 	{
+		title: "Mania Dan Calculator",
+		description: "Calculate individual map scores for osu!mania dan clears.",
+		path: "/tools/mania-dan-calculator",
+		icon: "fas fa-calculator",
+		searchKeywords: ["osu", "mania", "dan", "calculator", "score", "accuracy", "notes"],
+	},
+	{
 		title: "Suggest a Tool",
 		description: "Have an idea for a new tool? Share it with the community!",
 		path: "/suggestions",

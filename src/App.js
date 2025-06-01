@@ -20,6 +20,7 @@ import FaviconGeneratorPage from "./pages/FaviconGeneratorPage";
 import HashGeneratorPage from "./pages/HashGeneratorPage";
 import UrlShortenerPage from "./pages/UrlShortenerPage";
 import UniversalBaseConverterPage from "./pages/UniversalBaseConverterPage";
+import ManiaDanCalculatorPage from "./pages/ManiaDanCalculatorPage";
 import LoadingScreen from "./components/LoadingScreen";
 import SuggestionPage from "./pages/SuggestionPage";
 import { LanguageProvider } from "./contexts/LanguageContext";
@@ -184,6 +185,16 @@ function App() {
 									<Route
 										path="tools/universal-base-converter"
 										element={<UniversalBaseConverterPage />}
+									/>
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="mdcPageTitle" pageDescriptionKey="mdcPageDescription" />
+									}
+								>
+									<Route
+										path="tools/mania-dan-calculator"
+										element={<ManiaDanCalculatorPage />}
 									/>
 								</Route>
 								<Route
