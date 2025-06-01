@@ -24,4 +24,4 @@ This project has a collection of handy web tools:
 -   [x] **URL Shortener**: Shorten long URLs for easier sharing using a public API.
 -   [x] **Universal Base Converter**: Convert text and numbers between Binary, Decimal, Hex, Octal, and ASCII.
 -   [x] **Mania Dan Calculator**: Calculate individual map scores for osu!mania dan clears.
--   [x] **MP4 to MP3 Converter**: Convert MP4, MKV, MOV video or audio files to MP3, WAV, or OGG audio formats.
+-   [x] **Audio Converter**: Convert MP4, MKV, MOV video or audio files to MP3, WAV, or OGG audio formats.
