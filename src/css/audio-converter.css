@@ -1,0 +1,215 @@
+.ac-container {
+	max-width: 900px;
+}
+
+.ac-main {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+}
+
+.ac-loading-ffmpeg-indicator {
+	text-align: center;
+	padding: 15px;
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	color: var(--color-accent);
+	font-size: 1.1em;
+}
+.ac-loading-ffmpeg-indicator i {
+	margin-right: 10px;
+}
+
+.ac-upload-section {
+	border: 2px dashed var(--color-border);
+	border-radius: var(--border-radius);
+	padding: 30px;
+	text-align: center;
+	background-color: var(--color-surface);
+	cursor: pointer;
+	transition: border-color var(--transition-speed), background-color var(--transition-speed);
+}
+.ac-upload-section:hover:not(.disabled) {
+	border-color: var(--color-accent);
+	background-color: var(--color-background);
+}
+.ac-upload-section.disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+	border-color: var(--color-border);
+	background-color: var(--color-surface);
+}
+.ac-upload-section p {
+	margin: 10px 0 0 0;
+	color: var(--color-text);
+	opacity: 0.8;
+	font-size: 0.95em;
+}
+.ac-upload-section i {
+	font-size: 3em;
+	color: var(--color-accent);
+	margin-bottom: 15px;
+}
+
+.ac-options-section {
+	background-color: var(--color-surface);
+	padding: 20px;
+	border-radius: var(--border-radius);
+	border: 1px solid var(--color-border);
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	align-items: flex-start;
+}
+.ac-options-section .option-group {
+	flex: 1 1 200px;
+	min-width: 200px;
+}
+.ac-options-section label {
+	font-weight: 500;
+	margin-bottom: 5px;
+	display: block;
+}
+.ac-options-section select,
+.ac-options-section input[type="number"] {
+	padding: 10px;
+	border-radius: var(--border-radius);
+	border: 1px solid var(--color-border);
+	background-color: var(--color-background);
+	color: var(--color-text);
+	font-family: var(--font-family);
+	width: 100%;
+}
+.ac-options-section select:focus,
+.ac-options-section input[type="number"]:focus {
+	outline: none;
+	border-color: var(--color-accent);
+	box-shadow: 0 0 0 2px var(--color-accent-hover);
+}
+
+.ac-process-button-section {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.ac-warning-message {
+	background-color: rgba(243, 156, 18, 0.15);
+	color: var(--color-warning);
+	border: 1px solid var(--color-warning);
+	padding: 10px 15px;
+	border-radius: var(--border-radius);
+	font-size: 0.9em;
+	text-align: center;
+	margin-top: 15px;
+}
+
+.ac-preview-area {
+	margin-top: 20px;
+}
+.ac-preview-area h3 {
+	margin-bottom: 15px;
+	font-size: 1.2em;
+	color: var(--color-text);
+	border-bottom: 1px solid var(--color-border);
+	padding-bottom: 10px;
+}
+
+.audio-previews-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 15px;
+}
+
+.audio-preview-item {
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	padding: 15px;
+	background-color: var(--color-surface);
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+.audio-preview-item .preview-icon {
+	font-size: 3em;
+	color: var(--color-accent);
+	margin-bottom: 10px;
+}
+.audio-preview-item .file-info {
+	font-size: 0.9em;
+	color: var(--color-text);
+	opacity: 0.8;
+	word-break: break-all;
+}
+.audio-preview-item .status {
+	font-size: 0.9em;
+	font-weight: bold;
+}
+.audio-preview-item .status.pending,
+.audio-preview-item .status.loading_ffmpeg {
+	color: var(--color-info);
+}
+.audio-preview-item .status.processing {
+	color: var(--color-warning);
+}
+.audio-preview-item .status.converted {
+	color: var(--color-success);
+}
+.audio-preview-item .status.error {
+	color: var(--color-error);
+}
+
+.audio-preview-item .progress-bar-container {
+	width: 80%;
+	height: 8px;
+	background-color: var(--color-border);
+	border-radius: 4px;
+	margin-top: 5px;
+	overflow: hidden;
+}
+
+.audio-preview-item .progress-bar {
+	height: 100%;
+	background-color: var(--color-accent);
+	border-radius: 4px;
+	transition: width 0.2s ease-in-out;
+}
+
+.audio-preview-item .download-link {
+	display: inline-block;
+	padding: 8px 15px;
+	background-color: var(--color-accent);
+	color: var(--color-accent-text);
+	text-decoration: none;
+	border-radius: var(--border-radius);
+	font-size: 0.9em;
+	transition: background-color var(--transition-speed);
+	margin-top: 10px;
+}
+.audio-preview-item .download-link:hover {
+	background-color: var(--color-accent-hover);
+}
+.audio-preview-item .download-link.disabled {
+	background-color: var(--color-border);
+	cursor: not-allowed;
+	opacity: 0.6;
+}
+
+@media (max-width: 600px) {
+	.ac-options-section {
+		align-items: stretch;
+		flex-direction: column;
+	}
+	.option-group,
+	.ac-options-section select,
+	.ac-options-section input[type="number"] {
+		max-width: none;
+		min-width: 0;
+		width: 100%;
+	}
+	.audio-previews-grid {
+		grid-template-columns: 1fr;
+	}
+}

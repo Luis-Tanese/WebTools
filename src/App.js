@@ -21,6 +21,7 @@ import HashGeneratorPage from "./pages/HashGeneratorPage";
 import UrlShortenerPage from "./pages/UrlShortenerPage";
 import UniversalBaseConverterPage from "./pages/UniversalBaseConverterPage";
 import ManiaDanCalculatorPage from "./pages/ManiaDanCalculatorPage";
+import AudioConverterPage from "./pages/AudioConverterPage";
 import LoadingScreen from "./components/LoadingScreen";
 import SuggestionPage from "./pages/SuggestionPage";
 import { LanguageProvider } from "./contexts/LanguageContext";
@@ -192,10 +193,13 @@ function App() {
 										<Layout pageTitleKey="mdcPageTitle" pageDescriptionKey="mdcPageDescription" />
 									}
 								>
-									<Route
-										path="tools/mania-dan-calculator"
-										element={<ManiaDanCalculatorPage />}
-									/>
+									<Route path="tools/mania-dan-calculator" element={<ManiaDanCalculatorPage />} />
+								</Route>
+								<Route
+									path="/tools/audio-converter"
+									element={<Layout pageTitleKey="acPageTitle" pageDescriptionKey="acPageSubtitle" />}
+								>
+									<Route index element={<AudioConverterPage />} />
 								</Route>
 								<Route
 									element={

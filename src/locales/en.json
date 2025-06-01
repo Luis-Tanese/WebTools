@@ -488,5 +488,26 @@
 	"mdcErrorMinMaps": "At least {{minMaps}} maps are required.",
 	"mdcErrorInvalidInput": "Please check your input values. Overall average must be 0-100 and notes must be a positive whole number.",
 	"mdcNA": "N/A",
-	"mdcCalculatedSuccess": "Scores calculated successfully!"
+	"mdcCalculatedSuccess": "Scores calculated successfully!",
+
+	"acPageTitle": "Audio Converter",
+	"acPageSubtitle": "Convert MP4, MKV, MOV video or audio files to MP3, WAV, or OGG audio formats.",
+	"acUploadInstruction": "Click or Drag & Drop files here (MP4, MKV, MOV, MP3, WAV, FLAC, AAC)",
+	"acTargetFormatLabel": "Target Audio Format",
+	"acBitrateLabel": "Audio Bitrate (kbps, for MP3/OGG)",
+	"acConvertBtn": "Convert Audio",
+	"acLoadingFfmpeg": "Loading Converter Engine...",
+	"acProcessing": "Processing...",
+	"acPreviewHeader": "Converted Audio & Downloads",
+	"acStatus_pending": "Pending",
+	"acStatus_loading_ffmpeg": "Loading engine...",
+	"acStatus_processing": "Processing...",
+	"acStatus_converted": "Converted!",
+	"acStatus_error": "Error",
+	"acDownloadBtn": "Download",
+	"acErrorNoFiles": "Please upload some audio/video files first.",
+	"acErrorConversion": "Conversion failed.",
+	"acErrorFileRead": "Error reading file.",
+	"acErrorFfmpegLoad": "Failed to load converter engine. Please try refreshing.",
+	"acManyFilesWarning": "Processing large or many files may take significant time and consume browser resources."
 }

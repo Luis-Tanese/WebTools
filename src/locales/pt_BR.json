@@ -487,5 +487,26 @@
 	"mdcErrorMinMaps": "São necessários pelo menos {{minMaps}} mapas.",
 	"mdcErrorInvalidInput": "Por favor, verifique os valores de entrada. A média geral deve estar entre 0-100 e as notas devem ser um número inteiro positivo.",
 	"mdcNA": "N/A",
-	"mdcCalculatedSuccess": "Pontuações calculadas com sucesso!"
+	"mdcCalculatedSuccess": "Pontuações calculadas com sucesso!",
+
+	"acPageTitle": "Conversor de Áudio",
+	"acPageSubtitle": "Converta arquivos de vídeo ou áudio MP4, MKV, MOV para os formatos de áudio MP3, WAV ou OGG.",
+	"acUploadInstruction": "Clique ou Arraste e Solte arquivos aqui (MP4, MKV, MOV, MP3, WAV, FLAC, AAC)",
+	"acTargetFormatLabel": "Formato de Áudio de Saída",
+	"acBitrateLabel": "Taxa de Bits do Áudio (kbps, para MP3/OGG)",
+	"acConvertBtn": "Converter Áudio",
+	"acLoadingFfmpeg": "Carregando Motor de Conversão...",
+	"acProcessing": "Processando...",
+	"acPreviewHeader": "Áudios Convertidos e Downloads",
+	"acStatus_pending": "Pendente",
+	"acStatus_loading_ffmpeg": "Carregando motor...",
+	"acStatus_processing": "Processando...",
+	"acStatus_converted": "Convertido!",
+	"acStatus_error": "Erro",
+	"acDownloadBtn": "Baixar",
+	"acErrorNoFiles": "Por favor, envie alguns arquivos de áudio/vídeo primeiro.",
+	"acErrorConversion": "Falha na conversão.",
+	"acErrorFileRead": "Erro ao ler o arquivo.",
+	"acErrorFfmpegLoad": "Falha ao carregar o motor de conversão. Por favor, tente atualizar a página.",
+	"acManyFilesWarning": "Processar arquivos grandes ou muitos arquivos pode levar tempo considerável e consumir recursos do navegador."
 }
