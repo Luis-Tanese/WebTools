@@ -15,7 +15,9 @@ const SuggestionPage = () => {
 	const [sortOption, setSortOption] = useState("createdAtDesc");
 
 	const fetchSuggestions = useCallback(async () => {
-		setIsLoading(true);
+		if (suggestions.length === 0) {
+			setIsLoading(true);
+		}
 		try {
 			const response = await fetch(`${API_BASE_URL}/api/suggestions?sortBy=${sortOption}`);
 			if (!response.ok) {
@@ -30,9 +32,11 @@ const SuggestionPage = () => {
 			console.error("Fetch suggestions error:", err);
 			showToast(err.message || t("errorNetwork"), "error");
 		} finally {
-			setIsLoading(false);
+			if (suggestions.length === 0) {
+				setIsLoading(false);
+			}
 		}
-	}, [t, sortOption, showToast]);
+	}, [t, sortOption, showToast, suggestions.length]);
 
 	useEffect(() => {
 		fetchSuggestions();
@@ -69,18 +73,42 @@ const SuggestionPage = () => {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ voteType, clientId }),
 			});
+
+			const responseText = await response.text();
+
 			if (!response.ok) {
-				const errData = await response.json().catch(() => ({
-					message: t("errorAPI"),
-				}));
-				throw new Error(errData.message || t("errorAPI") + ` (${response.status})`);
+				let errorJsonMessage = t("errorAPI") + ` (Status: ${response.status})`;
+				if (responseText) {
+					try {
+						const parsedError = JSON.parse(responseText);
+						errorJsonMessage = parsedError.message || errorJsonMessage;
+					} catch (e) {
+						console.warn("Vote - Could not parse error response body as JSON:", responseText);
+					}
+				}
+				throw new Error(errorJsonMessage);
 			}
-			const updatedSuggestion = await response.json();
-			setSuggestions((prev) => prev.map((s) => (s._id === suggestionId ? updatedSuggestion : s)));
+
+			if (!responseText) {
+				console.error("Vote - Received 2xx response, but body is empty. This is unexpected.");
+				showToast(t("errorAPI") + " (Empty success response from server)", "error");
+				fetchSuggestions();
+				return;
+			}
+
+			const updatedSuggestionFromServer = JSON.parse(responseText);
+
+			setSuggestions((prevSuggestions) =>
+				prevSuggestions.map((s) => (s._id === suggestionId ? updatedSuggestionFromServer : s))
+			);
 			showToast(t("suggestionVoteSuccess"), "success");
 		} catch (err) {
-			console.error("Vote error:", err);
-			showToast(err.message || t("errorNetwork"), "error");
+			console.error("Vote - Error in handleVote:", err);
+			if (err instanceof SyntaxError) {
+				showToast(t("errorAPI") + " (Invalid data format from server)", "error");
+			} else {
+				showToast(err.message || t("errorNetwork"), "error");
+			}
 		}
 	};
 
@@ -91,18 +119,42 @@ const SuggestionPage = () => {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(commentData),
 			});
+
+			const responseText = await response.text();
+
 			if (!response.ok) {
-				const errData = await response.json().catch(() => ({
-					message: t("errorAPI"),
-				}));
-				throw new Error(errData.message || t("errorAPI") + ` (${response.status})`);
+				let errorJsonMessage = t("errorAPI") + ` (Status: ${response.status})`;
+				if (responseText) {
+					try {
+						const parsedError = JSON.parse(responseText);
+						errorJsonMessage = parsedError.message || errorJsonMessage;
+					} catch (e) {
+						console.warn("Comment - Could not parse error response body as JSON:", responseText);
+					}
+				}
+				throw new Error(errorJsonMessage);
 			}
-			const updatedSuggestion = await response.json();
-			setSuggestions((prev) => prev.map((s) => (s._id === suggestionId ? updatedSuggestion : s)));
+
+			if (!responseText) {
+				console.error("Comment - Received 2xx response, but body is empty. This is unexpected.");
+				showToast(t("errorAPI") + " (Empty success response from server)", "error");
+				fetchSuggestions();
+				return;
+			}
+
+			const updatedSuggestionFromServer = JSON.parse(responseText);
+
+			setSuggestions((prevSuggestions) =>
+				prevSuggestions.map((s) => (s._id === suggestionId ? updatedSuggestionFromServer : s))
+			);
 			showToast(t("suggestionCommentSuccess"), "success");
 		} catch (err) {
-			console.error("Add comment error:", err);
-			showToast(err.message || t("errorNetwork"), "error");
+			console.error("Comment - Error in handleAddComment:", err);
+			if (err instanceof SyntaxError) {
+				showToast(t("errorAPI") + " (Invalid data format from server)", "error");
+			} else {
+				showToast(err.message || t("errorNetwork"), "error");
+			}
 			throw err;
 		}
 	};
