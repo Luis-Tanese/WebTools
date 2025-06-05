@@ -495,11 +495,11 @@
 	"acTargetFormatLabel": "Formato de Áudio de Saída",
 	"acBitrateLabel": "Taxa de Bits do Áudio (kbps, para MP3/OGG)",
 	"acConvertBtn": "Converter Áudio",
-	"acLoadingFfmpeg": "Carregando Motor de Conversão...",
+	"acLoadingFfmpeg": "Carregando Sistema de Conversão...",
 	"acProcessing": "Processando...",
 	"acPreviewHeader": "Áudios Convertidos e Downloads",
 	"acStatus_pending": "Pendente",
-	"acStatus_loading_ffmpeg": "Carregando motor...",
+	"acStatus_loading_ffmpeg": "Carregando Sistema...",
 	"acStatus_processing": "Processando...",
 	"acStatus_converted": "Convertido!",
 	"acStatus_error": "Erro",
@@ -507,6 +507,6 @@
 	"acErrorNoFiles": "Por favor, envie alguns arquivos de áudio/vídeo primeiro.",
 	"acErrorConversion": "Falha na conversão.",
 	"acErrorFileRead": "Erro ao ler o arquivo.",
-	"acErrorFfmpegLoad": "Falha ao carregar o motor de conversão. Por favor, tente atualizar a página.",
+	"acErrorFfmpegLoad": "Falha ao carregar o Sistema de conversão. Por favor, tente atualizar a página.",
 	"acManyFilesWarning": "Processar arquivos grandes ou muitos arquivos pode levar tempo considerável e consumir recursos do navegador."
 }
