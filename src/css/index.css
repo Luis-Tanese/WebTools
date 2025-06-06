@@ -83,63 +83,6 @@ header .subtitle {
 	gap: 25px;
 }
 
-.tool-card {
-	background-color: var(--color-surface);
-	border: 1px solid var(--color-border);
-	border-radius: var(--border-radius);
-	padding: 25px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-}
-
-.tool-card:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.tool-card h3 {
-	font-size: 1.5em;
-	margin-bottom: 10px;
-	color: var(--color-text);
-	display: flex;
-	align-items: center;
-}
-
-.tool-card h3 i {
-	margin-right: 10px;
-	color: var(--color-accent);
-	font-size: 0.9em;
-}
-
-.tool-card .description {
-	font-size: 0.95em;
-	color: var(--color-text);
-	opacity: 0.8;
-	margin-bottom: 20px;
-	flex-grow: 1;
-}
-
-.open-tool-btn {
-	display: inline-block;
-	width: 100%;
-	padding: 12px 20px;
-	background-color: var(--color-accent);
-	color: var(--color-accent-text);
-	text-align: center;
-	text-decoration: none;
-	border-radius: var(--border-radius);
-	font-weight: bold;
-	transition: background-color var(--transition-speed);
-	border: none;
-	cursor: pointer;
-}
-
-.open-tool-btn:hover {
-	background-color: var(--color-accent-hover);
-}
-
 .language-switcher {
 	position: fixed;
 	top: 20px;
@@ -214,20 +157,4 @@ header .subtitle {
 
 .github-icon {
 	font-size: 1.1em;
-}
-
-.tool-card.coming-soon-card {
-	opacity: 0.7;
-	border-style: dashed;
-}
-
-.tool-card .disabled-btn {
-	background-color: var(--color-border) !important;
-	color: var(--color-text) !important;
-	opacity: 0.6 !important;
-	cursor: not-allowed !important;
-}
-
-.tool-card .disabled-btn i {
-	margin-right: 8px;
 }

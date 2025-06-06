@@ -2,14 +2,15 @@ import React, { createContext, useState, useEffect, useCallback } from "react";
 import enStrings from "../locales/en.json";
 import ptBRStrings from "../locales/pt_BR.json";
 import enTools from "../locales/tools_en.js";
-import ptBRTools from "../locales/tools_pt_BR.js";
 
 export const LanguageContext = createContext();
 
 const translations = {
-	en: { strings: enStrings, tools: enTools },
-	pt_BR: { strings: ptBRStrings, tools: ptBRTools },
+	en: { strings: enStrings },
+	pt_BR: { strings: ptBRStrings },
 };
+
+const toolStructure = enTools;
 
 export const LanguageProvider = ({ children }) => {
 	const [language, setLanguage] = useState(localStorage.getItem("preferredLang") || "en");
@@ -34,8 +35,8 @@ export const LanguageProvider = ({ children }) => {
 	);
 
 	const getTools = useCallback(() => {
-		return translations[language]?.tools || translations.en.tools;
-	}, [language]);
+		return toolStructure;
+	}, []);
 
 	return (
 		<LanguageContext.Provider value={{ language, setLanguage, t, getTools }}>{children}</LanguageContext.Provider>

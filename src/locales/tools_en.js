@@ -1,28 +1,28 @@
 const tools_en = [
 	{
-		title: "QR Code Generator",
-		description: "Generates QR codes from any text or link instantly.",
+		titleKey: "toolTitle_qr",
+		descriptionKey: "toolDesc_qr",
 		path: "/tools/qr-generator",
 		icon: "fas fa-qrcode",
 		searchKeywords: ["qr", "code", "qrcode", "qr-code", "gen", "generator"],
 	},
 	{
-		title: "Markdown Editor",
-		description: "Write and preview markdown with live updates.",
+		titleKey: "toolTitle_markdown",
+		descriptionKey: "toolDesc_markdown",
 		path: "/tools/markdown-editor",
 		icon: "fab fa-markdown",
 		searchKeywords: ["markdown", "md", "editor", "preview", "format"],
 	},
 	{
-		title: "Base64 Converter",
-		description: "Convert files and text to/from Base64 encoding.",
+		titleKey: "toolTitle_base64",
+		descriptionKey: "toolDesc_base64",
 		path: "/tools/base64-converter",
 		icon: "fas fa-exchange-alt",
 		searchKeywords: ["base64", "converter", "encode", "decode", "file"],
 	},
 	{
-		title: "Text Analyzer",
-		description: "Analyze silly text statistics like word count, characters, sentences, and top keywords.",
+		titleKey: "toolTitle_textAnalyzer",
+		descriptionKey: "toolDesc_textAnalyzer",
 		path: "/tools/text-counter",
 		icon: "fas fa-calculator",
 		searchKeywords: [
@@ -38,15 +38,15 @@ const tools_en = [
 		],
 	},
 	{
-		title: "JSON Formatter",
-		description: "Format, validate, beautify and minify JSON data.",
+		titleKey: "toolTitle_jsonFormatter",
+		descriptionKey: "toolDesc_jsonFormatter",
 		path: "/tools/json-formatter",
 		icon: "fas fa-code",
 		searchKeywords: ["json", "formatter", "validator", "beautify", "minify", "format", "validate", "lint", "data"],
 	},
 	{
-		title: "Image Converter",
-		description: "Convert images between different formats like JPEG, PNG, WEBP.",
+		titleKey: "toolTitle_imageConverter",
+		descriptionKey: "toolDesc_imageConverter",
 		path: "/tools/image-converter",
 		icon: "fas fa-file-image",
 		searchKeywords: [
@@ -66,15 +66,15 @@ const tools_en = [
 		],
 	},
 	{
-		title: "Regex Tester",
-		description: "Test, visualize, and debug regular expressions with a live preview and cheatsheet.",
+		titleKey: "toolTitle_regexTester",
+		descriptionKey: "toolDesc_regexTester",
 		path: "/tools/regex-tester",
 		icon: "fas fa-terminal",
 		searchKeywords: ["regex", "regular expression", "tester", "debugger", "pattern", "match", "grok", "regexp"],
 	},
 	{
-		title: "Browser & IP Info",
-		description: "View your browser details, IP address, and supported web features. Client-side info only.",
+		titleKey: "toolTitle_browserInfo",
+		descriptionKey: "toolDesc_browserInfo",
 		path: "/tools/browser-info",
 		icon: "fas fa-info-circle",
 		searchKeywords: [
@@ -89,15 +89,15 @@ const tools_en = [
 		],
 	},
 	{
-		title: "JSON/CSV/YAML Converter",
-		description: "Convert data between JSON, CSV, and YAML formats. Includes formatting options.",
+		titleKey: "toolTitle_dataConverter",
+		descriptionKey: "toolDesc_dataConverter",
 		path: "/tools/data-converter",
 		icon: "fas fa-retweet",
 		searchKeywords: ["json", "csv", "yaml", "converter", "formatter", "data", "conversion", "parser"],
 	},
 	{
-		title: "Unit Converter",
-		description: "Convert between various units of length, mass, temperature, speed, and data storage.",
+		titleKey: "toolTitle_unitConverter",
+		descriptionKey: "toolDesc_unitConverter",
 		path: "/tools/unit-converter",
 		icon: "fas fa-balance-scale-right",
 		searchKeywords: [
@@ -115,8 +115,8 @@ const tools_en = [
 		],
 	},
 	{
-		title: "Color Converter",
-		description: "Convert colors between HEX, RGB, HSL, HSV, and CSS names.",
+		titleKey: "toolTitle_colorConverter",
+		descriptionKey: "toolDesc_colorConverter",
 		path: "/tools/color-converter",
 		icon: "fas fa-palette",
 		searchKeywords: [
@@ -135,22 +135,22 @@ const tools_en = [
 		],
 	},
 	{
-		title: "IP Subnet Calculator",
-		description: "Calculate network details like network/broadcast addresses, host range, and masks.",
+		titleKey: "toolTitle_subnetCalculator",
+		descriptionKey: "toolDesc_subnetCalculator",
 		path: "/tools/subnet-calculator",
 		icon: "fas fa-network-wired",
 		searchKeywords: ["ip", "subnet", "network", "calculator", "mask", "cidr", "address", "range", "hosts"],
 	},
 	{
-		title: "Lorem Ipsum Generator",
-		description: "Generate placeholder text (paragraphs, words, lists).",
+		titleKey: "toolTitle_loremIpsum",
+		descriptionKey: "toolDesc_loremIpsum",
 		path: "/tools/lorem-ipsum-generator",
 		icon: "fas fa-paragraph",
 		searchKeywords: ["lorem", "ipsum", "text", "generator", "placeholder", "dummy", "content"],
 	},
 	{
-		title: "Favicon Generator",
-		description: "Create favicons for your website from a single image, including manifest and HTML.",
+		titleKey: "toolTitle_faviconGenerator",
+		descriptionKey: "toolDesc_faviconGenerator",
 		path: "/tools/favicon-generator",
 		icon: "fas fa-icons",
 		searchKeywords: [
@@ -164,8 +164,8 @@ const tools_en = [
 		],
 	},
 	{
-		title: "Hash Generator",
-		description: "Calculate MD5, SHA-1, SHA-256, SHA-512 hashes for text or files.",
+		titleKey: "toolTitle_hashGenerator",
+		descriptionKey: "toolDesc_hashGenerator",
 		path: "/tools/hash-generator",
 		icon: "fas fa-fingerprint",
 		searchKeywords: [
@@ -182,15 +182,15 @@ const tools_en = [
 		],
 	},
 	{
-		title: "URL Shortener",
-		description: "Shorten long URLs for easier sharing using a public API.",
+		titleKey: "toolTitle_urlShortener",
+		descriptionKey: "toolDesc_urlShortener",
 		path: "/tools/url-shortener",
 		icon: "fas fa-link",
 		searchKeywords: ["url", "shortener", "link", "shorten", "tinyurl", "bitly", "isgd"],
 	},
 	{
-		title: "Universal Base Converter",
-		description: "Convert text and numbers between Binary, Decimal, Hex, Octal, and ASCII.",
+		titleKey: "toolTitle_baseConverter",
+		descriptionKey: "toolDesc_baseConverter",
 		path: "/tools/universal-base-converter",
 		icon: "fas fa-exchange-alt",
 		searchKeywords: [
@@ -208,15 +208,15 @@ const tools_en = [
 		],
 	},
 	{
-		title: "Mania Dan Calculator",
-		description: "Calculate individual map scores for osu!mania dan clears.",
+		titleKey: "toolTitle_maniaCalc",
+		descriptionKey: "toolDesc_maniaCalc",
 		path: "/tools/mania-dan-calculator",
 		icon: "fas fa-calculator",
 		searchKeywords: ["osu", "mania", "dan", "calculator", "score", "accuracy", "notes"],
 	},
 	{
-		title: "Audio Converter",
-		description: "Convert MP4, MKV, MOV videos or audio files to MP3, WAV, or OGG audio formats.",
+		titleKey: "toolTitle_audioConverter",
+		descriptionKey: "toolDesc_audioConverter",
 		path: "/tools/audio-converter",
 		icon: "fas fa-file-audio",
 		searchKeywords: [
@@ -234,8 +234,8 @@ const tools_en = [
 		],
 	},
 	{
-		title: "Suggest a Tool",
-		description: "Have an idea for a new tool? Share it with the community!",
+		titleKey: "toolTitle_suggest",
+		descriptionKey: "toolDesc_suggest",
 		path: "/suggestions",
 		icon: "fas fa-lightbulb",
 		buttonTextKey: "suggestToolPopupButton",

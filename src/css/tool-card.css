@@ -1,0 +1,145 @@
+.tool-card {
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--border-radius);
+	padding: 25px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+	overflow: hidden;
+	transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+	will-change: transform;
+}
+
+.tool-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.tool-card-content-grid {
+	display: grid;
+	flex-grow: 1;
+}
+
+.tool-card-content,
+.tool-card-skeleton {
+	grid-area: 1 / 1;
+	transition: opacity 0.4s ease-out;
+}
+
+.tool-card .tool-card-content {
+	opacity: 0;
+}
+.tool-card.loaded .tool-card-content {
+	opacity: 1;
+}
+.tool-card.loaded .tool-card-skeleton {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.tool-card-skeleton .skeleton-line {
+	background-color: var(--color-border);
+	border-radius: 4px;
+	margin-bottom: 15px;
+	transition: height 0.3s ease-out, opacity 0.3s ease-out, margin-bottom 0.3s ease-out;
+}
+.tool-card.loaded .tool-card-skeleton .skeleton-line {
+	height: 0 !important;
+	opacity: 0;
+	margin-bottom: 0;
+}
+.skeleton-title {
+	width: 60%;
+	height: 24px;
+	margin-bottom: 20px;
+}
+.skeleton-description {
+	width: 90%;
+	height: 16px;
+}
+.skeleton-description.short {
+	width: 75%;
+	height: 16px;
+	margin-bottom: 20px;
+}
+
+.tool-card h3 {
+	font-size: 1.5em;
+	margin-bottom: 10px;
+	color: var(--color-text);
+	display: flex;
+	align-items: center;
+}
+.tool-card h3 i {
+	margin-right: 10px;
+	color: var(--color-accent);
+	font-size: 0.9em;
+}
+.tool-card .description {
+	font-size: 0.95em;
+	color: var(--color-text);
+	opacity: 0.8;
+	margin-bottom: 20px;
+	flex-grow: 1;
+}
+
+.tool-card-stats {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	z-index: 2;
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	color: var(--color-text);
+	opacity: 0;
+	font-size: 0.75em;
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	transition: opacity 0.3s ease-in-out 0.2s;
+}
+.tool-card.loaded .tool-card-stats {
+	opacity: 0.6;
+}
+.tool-card:hover .tool-card-stats {
+	opacity: 0.9;
+}
+
+.open-tool-btn {
+	display: inline-block;
+	width: 100%;
+	padding: 12px 20px;
+	background-color: var(--color-accent);
+	color: var(--color-accent-text);
+	text-align: center;
+	text-decoration: none;
+	border-radius: var(--border-radius);
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+.open-tool-btn:hover {
+	background-color: var(--color-accent-hover);
+}
+
+.coming-soon-card,
+.tool-card.coming-soon-card {
+	opacity: 0.7;
+	border-style: dashed;
+}
+.disabled-btn,
+.tool-card .disabled-btn {
+	background-color: var(--color-border) !important;
+	color: var(--color-text) !important;
+	opacity: 0.6 !important;
+	cursor: not-allowed !important;
+}
+.disabled-btn i,
+.tool-card .disabled-btn i {
+	margin-right: 8px;
+}
