@@ -11,7 +11,7 @@
 	"defaultMetaDescription": "WebTools: Uma coleção de utilitários online gratuitos, incluindo gerador de código QR, editor Markdown, conversor Base64, analisador de texto, formatador JSON, conversor de imagem, testador de regex e muito mais. Simplifique suas tarefas de desenvolvimento web e dados.",
 	"homePageDescription": "Descubra WebTools, um conjunto de utilitários online gratuitos para desenvolvedores e tarefas diárias. Inclui gerador de QR, editor Markdown, conversor Base64 e muitas outras ferramentas úteis.",
 	"backButtonTitle": "Voltar para Início",
-	
+
 	"suggestionsPageTitle": "Sugestões de Ferramentas",
 	"suggestionsPageSubtitle": "Tem uma ideia para uma nova ferramenta? Compartilhe com a comunidade!",
 	"suggestionsPageDescription": "Sugira novas ferramentas para o WebTools, vote em ideias existentes e discuta com a comunidade.",
@@ -48,7 +48,7 @@
 	"errorNetwork": "Erro de rede. Verifique sua conexão.",
 	"anonymousUser": "Anônimo",
 	"postedBy": "Postado por {{username}} em {{date}}",
-	
+
 	"toolTitle_qr": "Gerador de QR Code",
 	"toolDesc_qr": "Gera códigos QR a partir de qualquer texto ou link instantaneamente.",
 	"toolTitle_markdown": "Editor de Markdown",
@@ -89,7 +89,7 @@
 	"toolDesc_audioConverter": "Converta vídeos MP4, MKV, MOV ou arquivos de áudio para os formatos MP3, WAV ou OGG.",
 	"toolTitle_suggest": "Sugerir uma Ferramenta",
 	"toolDesc_suggest": "Tem uma ideia para uma nova ferramenta? Compartilhe com a comunidade!",
-	
+
 	"qrPageTitle": "Gerador de Código QR",
 	"qrPageSubtitle": "Digite um texto ou URL para gerar um código QR instantaneamente.",
 	"qrInputLabel": "Texto ou URL:",
@@ -103,7 +103,7 @@
 	"qrCopiedSuccess": "Código QR copiado para a área de transferência!",
 	"qrCopiedError": "Falha ao copiar o código QR. Seu navegador pode não suportar ou requer permissões.",
 	"qrCopyFallback": "Não foi possível copiar a imagem diretamente. Por favor, clique com o botão direito no código QR e selecione \"Copiar Imagem\".",
-	
+
 	"mdPageTitle": "Editor de Markdown",
 	"mdPageSubtitle": "Escreva Markdown e veja a pré-visualização ao vivo. Copie como HTML ou Markdown.",
 	"mdLoadSample": "Carregar Exemplo",
@@ -114,7 +114,7 @@
 	"mdCopiedMarkdownSuccess": "Markdown copiado para a área de transferência!",
 	"mdCopiedHtmlSuccess": "HTML copiado para a área de transferência!",
 	"mdCopiedError": "Falha ao copiar.",
-	
+
 	"b64PageTitle": "Conversor de Base64",
 	"b64PageSubtitle": "Codifique texto/arquivos para Base64 ou decodifique Base64 para texto/arquivos.",
 	"b64EncodeMode": "Codificar",
@@ -148,7 +148,7 @@
 	"b64CopiedSuccess": "Saída copiada para a área de transferência!",
 	"b64OptionsHeader": "Opções",
 	"b64OutputFilenameLabel": "Nome do Arquivo de Saída (opcional):",
-	
+
 	"tcPageTitle": "Analisador de Texto Avançado",
 	"tcPageSubtitle": "Analise seu texto para palavras, caracteres, frases, parágrafos, tempo de leitura, densidade de palavras-chave e mais.",
 	"tcInputLabel": "Digite o Texto",
@@ -176,7 +176,7 @@
 	"tcNumKeywordsLabel": "Nº de Palavras-Chave Principais:",
 	"tcMinKeywordLengthLabel": "Tam. Mín. Palavra-Chave:",
 	"tcIgnoreNumbersLabel": "Ignorar números nas palavras-chave?",
-	
+
 	"jfPageTitle": "Formatador JSON",
 	"jfPageSubtitle": "Valide, embeleze e minifique seus dados JSON com facilidade.",
 	"jfInputHeader": "Entrada JSON",
@@ -194,7 +194,7 @@
 	"jfErrorCopying": "Falha ao copiar a saída.",
 	"jfClearInputTitle": "Limpar Entrada",
 	"jfCopyOutputTitle": "Copiar Saída",
-	
+
 	"icPageTitle": "Conversor de Imagens",
 	"icPageSubtitle": "Converta múltiplas imagens entre os formatos JPEG, PNG e WEBP.",
 	"icUploadInstruction": "Clique ou Arraste e Solte imagens aqui para enviar (JPEG, PNG, SVG, WEBP, BMP, JFIF, PJPEG)",
@@ -213,7 +213,7 @@
 	"icErrorImageLoad": "Não foi possível carregar a imagem para conversão.",
 	"icErrorFileRead": "Erro ao ler o arquivo.",
 	"icManyFilesWarning": "Processar muitas imagens pode levar algum tempo e consumir recursos do navegador.",
-	
+
 	"rtPageTitle": "Testador de Regex",
 	"rtPageSubtitle": "Teste e visualize suas expressões regulares em tempo real.",
 	"rtRegexInputPlaceholder": "Digite seu padrão regex aqui",
@@ -258,7 +258,7 @@
 	"rtCheatNToM": "Entre n e m ocorrências",
 	"rtCheatGroup": "Grupo de captura",
 	"rtCheatOr": "OU (alternância)",
-	
+
 	"biPageTitle": "Informações do Navegador e IP",
 	"biPageSubtitle": "Veja detalhes sobre seu navegador, endereço IP e recursos web suportados.",
 	"biPrivacyNoteTitle": "Nota de Privacidade",
@@ -286,7 +286,7 @@
 	"biSupported": "Suportado",
 	"biNotSupported": "Não Suportado",
 	"biUnknown": "Desconhecido",
-	
+
 	"notFoundPageTitle": "Página Não Encontrada",
 	"notFoundTitle": "Oops! Página Não Encontrada",
 	"notFoundMessage": "A página que você está procurando pode ter sido removida, ter tido seu nome alterado ou está temporariamente indisponível.",
@@ -294,7 +294,7 @@
 	"comingSoonTitle": "Mais Ferramentas em Breve!",
 	"comingSoonDescription": "Estamos constantemente trabalhando para adicionar novas e empolgantes ferramentas para facilitar sua vida. Fique ligado!",
 	"comingSoonButton": "Bloqueado",
-	
+
 	"dcPageTitle": "Conversor de Dados (JSON/CSV/YAML)",
 	"dcPageSubtitle": "Converta dados entre os formatos JSON, CSV e YAML com facilidade.",
 	"dcConvertFrom": "Converter de",
@@ -322,7 +322,7 @@
 	"dcErrorCsvParse": "Erro na análise do CSV",
 	"dcCopiedSuccess": "Saída copiada para a área de transferência!",
 	"dcErrorCopying": "Falha ao copiar a saída.",
-	
+
 	"ucPageTitle": "Conversor de Unidades",
 	"ucPageSubtitle": "Converta várias unidades entre categorias como comprimento, massa, temperatura e mais.",
 	"ucSelectCategory": "Selecione a Categoria",
@@ -362,7 +362,7 @@
 	"ucUnitMegabyte": "Megabyte (MB)",
 	"ucUnitGigabyte": "Gigabyte (GB)",
 	"ucUnitTerabyte": "Terabyte (TB)",
-	
+
 	"ccPageTitle": "Conversor de Cores Avançado",
 	"ccPageSubtitle": "Converta cores entre HEX, RGB(A), HSL(A), HSV e nomes CSS. Inclui um seletor de cores.",
 	"ccCssNameLabel": "Nome de Cor CSS",
@@ -373,7 +373,7 @@
 	"ccCopiedSuccess": "'{{value}}' copiado para a área de transferência!",
 	"ccErrorCopying": "Falha ao copiar valor da cor.",
 	"ccErrorPrefix": "Erro",
-	
+
 	"scPageTitle": "Calculadora de Sub-rede IP",
 	"scPageSubtitle": "Calcule endereço de rede, endereço de broadcast, hosts utilizáveis e mais a partir de um IP e máscara de sub-rede.",
 	"scIpAddressLabel": "Endereço IP (ex: 192.168.1.0):",
@@ -402,7 +402,7 @@
 	"scClassC": "Classe C",
 	"scClassD": "Classe D (Multicast)",
 	"scClassE": "Classe E (Experimental)",
-	
+
 	"lipPageTitle": "Gerador de Lorem Ipsum",
 	"lipPageSubtitle": "Gere texto de marcação com opções para parágrafos, palavras, bytes ou listas.",
 	"lipGenerateTypeLabel": "Gerar:",
@@ -417,7 +417,7 @@
 	"lipCopiedSuccess": "Texto Lorem Ipsum copiado para a área de transferência!",
 	"lipCopiedError": "Falha ao copiar o texto.",
 	"lipOutputLabel": "Texto Gerado:",
-	
+
 	"fgPageTitle": "Gerador de Favicon",
 	"fgPageSubtitle": "Envie uma imagem para gerar vários tamanhos de favicon, um manifesto de aplicativo web e o HTML necessário.",
 	"fgUploadInstruction": "Clique ou Arraste e Solte sua imagem de origem aqui (PNG, JPG, SVG recomendado, proporção quadrada é melhor).",
@@ -444,7 +444,7 @@
 	"fgAndroidChrome192": "Android Chrome 192x192",
 	"fgAndroidChrome512": "Android Chrome 512x512",
 	"fgPreviewNotAvailable": "Pré-visualização N/D",
-	
+
 	"hgPageTitle": "Gerador de Hash",
 	"hgPageSubtitle": "Calcule hashes MD5, SHA-1, SHA-256, SHA-384 e SHA-512 para texto ou arquivos.",
 	"hgInputTypeLabel": "Tipo de Entrada:",
@@ -464,7 +464,7 @@
 	"hgErrorHashing": "Erro ao gerar o hash.",
 	"hgCopiedSuccess": "Hash copiado para a área de transferência!",
 	"hgCopiedError": "Falha ao copiar o hash.",
-	
+
 	"usPageTitle": "Encurtador de URL",
 	"usPageSubtitle": "Digite uma URL longa para torná-la curta e fácil de compartilhar. Usa um serviço público de encurtamento.",
 	"usLongUrlLabel": "URL Longa:",
@@ -477,7 +477,7 @@
 	"usErrorShortening": "Erro ao encurtar a URL. O serviço pode estar indisponível ou a URL é inválida.",
 	"usCopiedSuccess": "URL encurtada copiada para a área de transferência!",
 	"usCopiedError": "Falha ao copiar a URL.",
-	
+
 	"ubcPageTitle": "Conversor de Base Universal",
 	"ubcPageSubtitle": "Converta texto e números entre Binário, Decimal, Hexadecimal, Octal e ASCII.",
 	"ubcConvertFromLabel": "Converter De:",
@@ -499,7 +499,7 @@
 	"ubcTypeOctal": "Octal (Base 8)",
 	"ubcTypeText": "Texto (String UTF-8)",
 	"ubcTypeAscii": "ASCII (Códigos de Caractere)",
-	
+
 	"mdcPageTitle": "Calculadora de Dan",
 	"mdcPageSubtitle": "Calcule as pontuações individuais dos mapas para clears de dan no osu!mania.",
 	"mdcDescription": "Insira a ",
@@ -523,7 +523,7 @@
 	"mdcErrorInvalidInput": "Por favor, verifique os valores de entrada. A média geral deve estar entre 0-100 e as notas devem ser um número inteiro positivo.",
 	"mdcNA": "N/A",
 	"mdcCalculatedSuccess": "Pontuações calculadas com sucesso!",
-	
+
 	"acPageTitle": "Conversor de Áudio",
 	"acPageSubtitle": "Converta arquivos de vídeo ou áudio MP4, MKV, MOV para os formatos de áudio MP3, WAV ou OGG.",
 	"acUploadInstruction": "Clique ou Arraste e Solte arquivos aqui (MP4, MKV, MOV, MP3, WAV, FLAC, AAC)",
@@ -543,5 +543,32 @@
 	"acErrorConversion": "Falha na conversão.",
 	"acErrorFileRead": "Erro ao ler o arquivo.",
 	"acErrorFfmpegLoad": "Falha ao carregar o Sistema de conversão. Por favor, tente atualizar a página.",
-	"acManyFilesWarning": "Processar arquivos grandes ou muitos arquivos pode levar tempo considerável e consumir recursos do navegador."
+	"acManyFilesWarning": "Processar arquivos grandes ou muitos arquivos pode levar tempo considerável e consumir recursos do navegador.",
+
+	"toolTitle_steganography": "Esteganografia em Imagem",
+	"toolDesc_steganography": "Oculte mensagens de texto secretas dentro de uma imagem. Decodifique mensagens de imagens.",
+	"stegPageTitle": "Esteganografia em Imagem",
+	"stegPageSubtitle": "Oculte uma mensagem secreta em um arquivo de imagem (codificar) ou extraia uma mensagem de uma imagem (decodificar).",
+	"stegEncodeMode": "Codificar",
+	"stegDecodeMode": "Decodificar",
+	"stegInputHeaderEncode": "Sua Imagem e Mensagem",
+	"stegInputHeaderDecode": "Imagem para Decodificar",
+	"stegSelectImage": "Selecionar Imagem (PNG, JPG)",
+	"stegSecretTextLabel": "Mensagem Secreta para Ocultar:",
+	"stegSecretTextPlaceholder": "Sua mensagem secreta vai aqui...",
+	"stegEncodeAction": "Codificar Mensagem",
+	"stegDecodeAction": "Decodificar Mensagem",
+	"stegProcessing": "Processando...",
+	"stegOutputHeader": "Resultado",
+	"stegEncodeSuccessMessage": "Sucesso! Sua mensagem foi codificada. Baixe a nova imagem abaixo:",
+	"stegDownloadButton": "Baixar Imagem Codificada",
+	"stegDecodeSuccessMessage": "Mensagem Extraída com Sucesso:",
+	"stegDecodeFailMessage": "Nenhuma mensagem oculta foi encontrada nesta imagem.",
+	"stegDecodedTextPlaceholder": "A mensagem decodificada aparecerá aqui...",
+	"stegErrorInvalidFileType": "Tipo de arquivo inválido. Selecione uma imagem PNG ou JPG.",
+	"stegErrorNoImage": "Por favor, selecione uma imagem primeiro.",
+	"stegErrorNoText": "Por favor, insira uma mensagem para ocultar.",
+	"stegErrorProcessing": "Ocorreu um erro ao processar a imagem.",
+	"stegErrorNoMessageFound": "Nenhuma mensagem oculta encontrada.",
+	"stegOutputFilenameLabel": "Nome do Arquivo de Saída:"
 }

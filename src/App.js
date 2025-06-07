@@ -22,6 +22,7 @@ import UrlShortenerPage from "./pages/UrlShortenerPage";
 import UniversalBaseConverterPage from "./pages/UniversalBaseConverterPage";
 import ManiaDanCalculatorPage from "./pages/ManiaDanCalculatorPage";
 import AudioConverterPage from "./pages/AudioConverterPage";
+import SteganographyPage from "./pages/SteganographyPage";
 import LoadingScreen from "./components/LoadingScreen";
 import SuggestionPage from "./pages/SuggestionPage";
 import { LanguageProvider } from "./contexts/LanguageContext";
@@ -200,6 +201,13 @@ function App() {
 									element={<Layout pageTitleKey="acPageTitle" pageDescriptionKey="acPageSubtitle" />}
 								>
 									<Route index element={<AudioConverterPage />} />
+								</Route>
+								<Route
+									element={
+										<Layout pageTitleKey="stegPageTitle" pageDescriptionKey="stegPageSubtitle" />
+									}
+								>
+									<Route path="tools/steganography" element={<SteganographyPage />} />
 								</Route>
 								<Route
 									element={
