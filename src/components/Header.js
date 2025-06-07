@@ -9,7 +9,13 @@ const Header = ({ onSearch }) => {
 			<h1>{t("pageTitle")}</h1>
 			<p className="subtitle">{t("pageSubtitle")}</p>
 			<div className="search-container">
-				<input type="search" id="search-bar" placeholder={t("searchPlaceholder")} onChange={onSearch} />
+				<input
+					type="search"
+					id="search-bar"
+					placeholder={t("searchPlaceholder")}
+					onChange={onSearch}
+					aria-label={t("searchPlaceholder")}
+				/>
 			</div>
 		</header>
 	);

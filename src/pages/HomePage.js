@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import Fuse from "fuse.js";
 import Header from "../components/Header";
 import ToolCard from "../components/ToolCard";
 import { useTranslation } from "../hooks/useTranslation";
@@ -35,7 +36,6 @@ const HomePage = () => {
 			if (suggestionTool) {
 				processedTools.push(suggestionTool);
 			}
-
 			setTools(processedTools.map((tool) => ({ ...tool, isLoading: false })));
 		} catch (error) {
 			console.error("Failed to fetch tool stats, loading static data as fallback.", error);
@@ -54,22 +54,6 @@ const HomePage = () => {
 		fetchAndProcessTools();
 	}, [fetchAndProcessTools]);
 
-	const filteredTools = tools.filter((tool) => {
-		if (!searchTerm) return true;
-		const lowerSearchTerm = searchTerm.toLowerCase();
-		const title = t(tool.titleKey);
-		const description = t(tool.descriptionKey);
-
-		const titleMatch = title.toLowerCase().includes(lowerSearchTerm);
-		const descriptionMatch = description.toLowerCase().includes(lowerSearchTerm);
-		const keywordsMatch =
-			tool.searchKeywords &&
-			tool.searchKeywords.some(
-				(keyword) => typeof keyword === "string" && keyword.toLowerCase().includes(lowerSearchTerm)
-			);
-		return titleMatch || descriptionMatch || keywordsMatch;
-	});
-
 	const handleSearchChange = (event) => {
 		setSearchTerm(event.target.value);
 	};
@@ -77,6 +61,25 @@ const HomePage = () => {
 	const handleToolCardClick = (path) => {
 		triggerPageTransition(path);
 	};
+
+	const fuse = useMemo(() => {
+		const translatedTools = tools.map((tool) => ({
+			...tool,
+			title: t(tool.titleKey),
+			description: t(tool.descriptionKey),
+		}));
+		return new Fuse(translatedTools, {
+			keys: ["title", "description", "searchKeywords"],
+			threshold: 0.4,
+		});
+	}, [tools, t]);
+
+	const filteredTools = useMemo(() => {
+		if (!searchTerm) {
+			return tools;
+		}
+		return fuse.search(searchTerm).map((result) => result.item);
+	}, [searchTerm, tools, fuse]);
 
 	return (
 		<>
@@ -93,6 +96,9 @@ const HomePage = () => {
 								index={index}
 							/>
 						))}
+						{filteredTools.length === 0 && !tools.some((t) => t.isLoading) && (
+							<p className="no-tools-message">{t("noToolsFound")}</p>
+						)}
 					</div>
 				</main>
 			</div>
