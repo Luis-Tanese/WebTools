@@ -234,13 +234,6 @@ const tools_en = [
 		],
 	},
 	{
-		titleKey: "toolTitle_steganography",
-		descriptionKey: "toolDesc_steganography",
-		path: "/tools/steganography",
-		icon: "fas fa-user-secret",
-		searchKeywords: ["steganography", "image", "hide", "text", "secret", "message", "encode", "decode", "lsb"],
-	},
-	{
 		titleKey: "toolTitle_suggest",
 		descriptionKey: "toolDesc_suggest",
 		path: "/suggestions",

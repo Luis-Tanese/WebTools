@@ -2,7 +2,7 @@ import JSZip from "jszip";
 
 export const FAVICON_SIZES = [
 	{ name: "favicon-16x16.png", size: 16, labelKey: "fgFaviconSize16" },
-	{ name: "favicon-32x32.png", size: 32, labelKey: "fgFaviconSizeDefault" }, // Often used as the main favicon.png
+	{ name: "favicon-32x32.png", size: 32, labelKey: "fgFaviconSizeDefault" },
 	{ name: "favicon-48x48.png", size: 48, labelKey: "fgFaviconSize48" },
 	{ name: "apple-touch-icon.png", size: 180, labelKey: "fgAppleTouchIcon" },
 	{ name: "android-chrome-192x192.png", size: 192, labelKey: "fgAndroidChrome192" },
